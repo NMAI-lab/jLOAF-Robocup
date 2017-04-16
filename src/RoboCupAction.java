@@ -1,6 +1,6 @@
-import org.jLOAF.action.ComplexAction;
+import org.jLOAF.action.AtomicAction;
 
-public class RoboCupAction extends ComplexAction {
+public class RoboCupAction extends AtomicAction {
 	
 	private static final long serialVersionUID = 1L;
 
