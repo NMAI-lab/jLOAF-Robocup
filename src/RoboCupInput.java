@@ -7,8 +7,8 @@ public class RoboCupInput extends ComplexInput {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public RoboCupInput() {
-		super("RoboCup Input");
+	public RoboCupInput(String s) {
+		super(s);
 	}
 
 }

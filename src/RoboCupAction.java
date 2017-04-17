@@ -4,8 +4,8 @@ public class RoboCupAction extends AtomicAction {
 	
 	private static final long serialVersionUID = 1L;
 
-	public RoboCupAction() {
-		super("SoccerActions");
+	public RoboCupAction(String name) {
+		super(name);
 	}
 
 }
