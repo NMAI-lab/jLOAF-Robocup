@@ -3,7 +3,14 @@ import org.jLOAF.MotorControl;
 import org.jLOAF.Perception;
 import org.jLOAF.Reasoning;
 import org.jLOAF.casebase.CaseBase;
+import org.jLOAF.inputs.AtomicInput;
+import org.jLOAF.inputs.ComplexInput;
 import org.jLOAF.reasoning.SimpleKNN;
+import org.jLOAF.reasoning.WeightedKNN;
+import org.jLOAF.sim.atomic.Equality;
+import org.jLOAF.sim.atomic.EuclideanDistance;
+import org.jLOAF.sim.atomic.PercentDifference;
+import org.jLOAF.sim.complex.Mean;
 
 public class RoboCupAgent extends Agent {
 
@@ -13,7 +20,12 @@ public class RoboCupAgent extends Agent {
 		this.mc = new RoboCupMotorControl();
 		this.p = new RoboCupPerception();
 		
-		this.r = new SimpleKNN(1,cb);
+		this.r = new WeightedKNN(3,cb);
+		
+		RoboCupInput.setClassSimilarityMetric(new Mean());
+		ComplexInput.setClassStrategy(new Mean());
+		AtomicInput.setClassStrategy(new EuclideanDistance());
+		
 		this.cb = casebase;
 	}
 	
