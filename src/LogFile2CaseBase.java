@@ -26,6 +26,13 @@ public class LogFile2CaseBase {
 		String turnPattern = "\\(turn (?<turnAngle>[\\-,\\d,\\.]+)";
 		String DashPattern = "\\(dash (?<DashPower>[\\-,\\d,\\.]+)";
 		String KickPattern = "\\(kick (?<KickPower>[\\-,\\d,\\.]+) (?<KickAngle>[\\-,\\d,\\.]+)";
+		String fcbPattern ="\\(\\(f c b\\) (?<fcbDistance>[\\d,\\.]+) (?<fcbAngle>[\\-,\\d]+)";
+		String flbPattern ="\\(\\(f l b\\) (?<flbDistance>[\\d,\\.]+) (?<flbAngle>[\\-,\\d]+)";
+		String frbPattern ="\\(\\(f r b\\) (?<frbDistance>[\\d,\\.]+) (?<frbAngle>[\\-,\\d]+)";
+		String fctPattern ="\\(\\(f c t\\) (?<fctDistance>[\\d,\\.]+) (?<fctAngle>[\\-,\\d]+)";
+		String fltPattern ="\\(\\(f l t\\) (?<fltDistance>[\\d,\\.]+) (?<fltAngle>[\\-,\\d]+)";
+		String frtPattern ="\\(\\(f r t\\) (?<frtDistance>[\\d,\\.]+) (?<frtAngle>[\\-,\\d]+)";
+		String fcPattern ="\\(\\(f c\\) (?<fcDistance>[\\d,\\.]+) (?<fcAngle>[\\-,\\d]+)";
 		
 		//pattern objects
 		Pattern vp = Pattern.compile(visualPattern);
@@ -35,12 +42,32 @@ public class LogFile2CaseBase {
 		Pattern tp = Pattern.compile(turnPattern);
 		Pattern dp = Pattern.compile(DashPattern);
 		Pattern kp = Pattern.compile(KickPattern);
+		
+		//flag patterns
+		Pattern fcb = Pattern.compile(fcbPattern);
+		Pattern flb = Pattern.compile(flbPattern);
+		Pattern frb = Pattern.compile(frbPattern);
+		Pattern fct = Pattern.compile(fctPattern);
+		Pattern flt = Pattern.compile(fltPattern);
+		Pattern frt = Pattern.compile(frtPattern);
+		Pattern fc = Pattern.compile(fcPattern);
+		
+		//matcher
 		Matcher m;
 		
 		//inputs
 		RoboCupAction action = null;
 		ComplexInput ginput;
 		ComplexInput binput;
+		ComplexInput fcbinput;
+		ComplexInput flbinput;
+		ComplexInput frbinput;
+		ComplexInput fctinput;
+		ComplexInput fltinput;
+		ComplexInput frtinput;
+		ComplexInput fcinput;
+		
+		
 		RoboCupInput input = null;
 		
 		boolean hasAction = false;
@@ -125,11 +152,111 @@ public class LogFile2CaseBase {
 						input.add(binput);	
 					}
 					
+					m = fcb.matcher(Line);
+					if(m.find()){
+						fcbinput = new ComplexInput("fcb");
+						//System.out.println(m.group(1));
+						//System.out.println(m.group(2));
+						Feature fcbDist = new Feature(Double.parseDouble(m.group(1))); 
+						Feature fcbAngle = new Feature(Double.parseDouble(m.group(2)));
+						fcbinput.add(new AtomicInput("fcb_dist", fcbDist));
+						fcbinput.add(new AtomicInput("fcb_dir", fcbAngle));
+						
+						//add to input
+						input.add(fcbinput);	
+					}
+					
+					m = flb.matcher(Line);
+					if(m.find()){
+						flbinput = new ComplexInput("flb");
+						//System.out.println(m.group(1));
+						//System.out.println(m.group(2));
+						Feature Dist = new Feature(Double.parseDouble(m.group(1))); 
+						Feature Angle = new Feature(Double.parseDouble(m.group(2)));
+						flbinput.add(new AtomicInput("flb_dist", Dist));
+						flbinput.add(new AtomicInput("flb_dir", Angle));
+						
+						//add to input
+						input.add(flbinput);	
+					}
+					
+					m = frb.matcher(Line);
+					if(m.find()){
+						frbinput = new ComplexInput("frb");
+						//System.out.println(m.group(1));
+						//System.out.println(m.group(2));
+						Feature Dist = new Feature(Double.parseDouble(m.group(1))); 
+						Feature Angle = new Feature(Double.parseDouble(m.group(2)));
+						frbinput.add(new AtomicInput("frb_dist", Dist));
+						frbinput.add(new AtomicInput("frb_dir", Angle));
+						
+						//add to input
+						input.add(frbinput);	
+					}
+					
+					m = fct.matcher(Line);
+					if(m.find()){
+						fctinput = new ComplexInput("fct");
+						//System.out.println(m.group(1));
+						//System.out.println(m.group(2));
+						Feature Dist = new Feature(Double.parseDouble(m.group(1))); 
+						Feature Angle = new Feature(Double.parseDouble(m.group(2)));
+						fctinput.add(new AtomicInput("fct_dist", Dist));
+						fctinput.add(new AtomicInput("fct_dir", Angle));
+						
+						//add to input
+						input.add(fctinput);	
+					}
+					
+					m = flt.matcher(Line);
+					if(m.find()){
+						fltinput = new ComplexInput("flt");
+						//System.out.println(m.group(1));
+						//System.out.println(m.group(2));
+						Feature Dist = new Feature(Double.parseDouble(m.group(1))); 
+						Feature Angle = new Feature(Double.parseDouble(m.group(2)));
+						fltinput.add(new AtomicInput("flt_dist", Dist));
+						fltinput.add(new AtomicInput("flt_dir", Angle));
+						
+						//add to input
+						input.add(fltinput);	
+					}
+					
+					m = frt.matcher(Line);
+					if(m.find()){
+						frtinput = new ComplexInput("frt");
+						//System.out.println(m.group(1));
+						//System.out.println(m.group(2));
+						Feature Dist = new Feature(Double.parseDouble(m.group(1))); 
+						Feature Angle = new Feature(Double.parseDouble(m.group(2)));
+						frtinput.add(new AtomicInput("frt_dist", Dist));
+						frtinput.add(new AtomicInput("frt_dir", Angle));
+						
+						//add to input
+						input.add(frtinput);	
+					}
+					
+					m = fc.matcher(Line);
+					if(m.find()){
+						fcinput = new ComplexInput("fc");
+						//System.out.println(m.group(1));
+						//System.out.println(m.group(2));
+						Feature Dist = new Feature(Double.parseDouble(m.group(1))); 
+						Feature Angle = new Feature(Double.parseDouble(m.group(2)));
+						fcinput.add(new AtomicInput("fc_dist", Dist));
+						fcinput.add(new AtomicInput("fc_dir", Angle));
+						
+						//add to input
+						input.add(fcinput);	
+					}
+					
 				}
 				//only add to casebase if an state action pair exists
 				if(hasInput && hasAction){
 					Case c = new Case(input, action);
 					cb.add(c);
+					hasInput = false;
+					hasAction = false;
 				}	
 			}
 			

@@ -20,7 +20,7 @@ public class RoboCupAgent extends Agent {
 		this.mc = new RoboCupMotorControl();
 		this.p = new RoboCupPerception();
 		
-		this.r = new WeightedKNN(3,cb);
+		this.r = new WeightedKNN(5,cb);
 		
 		RoboCupInput.setClassSimilarityMetric(new Mean());
 		ComplexInput.setClassStrategy(new Mean());
