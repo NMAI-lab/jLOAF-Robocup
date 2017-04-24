@@ -16,12 +16,13 @@ public class LogFile2CaseBase {
 	
 	public static void main(String [] args) throws IOException{
 		String logfile = "Data/Carleton_1.lsf";
-		String outfile = "Data/casebase1.cb";
+		String outfile = "Data/casebase_reactive.cb";
 		
 		//patterns
 		String visualPattern = "\\(see (?<time>[\\d]{0,4}) .*\\)";
 		String goalPattern = "\\(\\(g (?<goalSide>[r,l]\\)) (?<goalDistance>[\\d,\\.]+) (?<goalAngle>[\\-,\\d]+)";
 		String ballPattern = "\\(\\(b\\) (?<ballDistance>[\\d,\\.]+) (?<ballAngle>[\\-,\\d]+)";
+		String ballPattern2 = "\\(\\(B\\) (?<ballDistance2>[\\d,\\.]+) (?<ballAngle2>[\\-,\\d]+)";
 		String actionPattern = "^\\(\\b(?<action>kick|turn|dash)\\b";
 		String turnPattern = "\\(turn (?<turnAngle>[\\-,\\d,\\.]+)";
 		String DashPattern = "\\(dash (?<DashPower>[\\-,\\d,\\.]+)";
@@ -38,6 +39,7 @@ public class LogFile2CaseBase {
 		Pattern vp = Pattern.compile(visualPattern);
 		Pattern gp = Pattern.compile(goalPattern);
 		Pattern bp = Pattern.compile(ballPattern);
+		Pattern bp2 = Pattern.compile(ballPattern2);
 		Pattern ap = Pattern.compile(actionPattern);
 		Pattern tp = Pattern.compile(turnPattern);
 		Pattern dp = Pattern.compile(DashPattern);
@@ -139,6 +141,21 @@ public class LogFile2CaseBase {
 					}
 					//check BallDistance and ballAngle
 					m = bp.matcher(Line);
+					if(m.find()){
+						binput = new ComplexInput("ball");
+						//System.out.println(m.group(1));
+						//System.out.println(m.group(2));
+						Feature ballDist = new Feature(Double.parseDouble(m.group(1))); 
+						Feature ballAngle = new Feature(Double.parseDouble(m.group(2)));
+						binput.add(new AtomicInput("ball_dist", ballDist));
+						binput.add(new AtomicInput("ball_dir", ballAngle));
+						
+						//add to input
+						input.add(binput);	
+					}
+					
+					//check BallDistance and ballAngle
+					m = bp2.matcher(Line);
 					if(m.find()){
 						binput = new ComplexInput("ball");
 						//System.out.println(m.group(1));
