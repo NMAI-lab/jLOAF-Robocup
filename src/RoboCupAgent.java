@@ -24,11 +24,18 @@ public class RoboCupAgent extends Agent {
 		
 		this.r = new WeightedKNN(5,cb);
 		
-		RoboCupInput.setClassSimilarityMetric(new GreedyMunkrezMatching());
 		ComplexInput.setClassStrategy(new Mean());
 		AtomicInput.setClassStrategy(new EuclideanDistance());
 		
 		this.cb = casebase;
+	}
+
+	public void setSim(String matchType) {
+		if(matchType.equals("default")){
+			RoboCupInput.setClassSimilarityMetric(new Mean());
+		}else if(matchType.equals("gmm")){
+			RoboCupInput.setClassSimilarityMetric(new GreedyMunkrezMatching());
+		}
 	}
 	
 	
