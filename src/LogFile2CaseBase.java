@@ -11,7 +11,9 @@ import org.jLOAF.casebase.CaseBase;
 import org.jLOAF.inputs.AtomicInput;
 import org.jLOAF.inputs.ComplexInput;
 import org.jLOAF.inputs.Feature;
-
+/***
+ * author : sacha gunaratne 2017 may
+ * **/
 public class LogFile2CaseBase {
 	//converts a log file into a casebase and writes to a file
 	
