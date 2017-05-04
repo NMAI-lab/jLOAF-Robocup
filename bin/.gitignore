@@ -4,3 +4,6 @@
 /RoboCupInput.class
 /RoboCupMotorControl.class
 /RoboCupPerception.class
+/AgentModules/
+/CasebaseCreation/
+/PerformanceTesting/
