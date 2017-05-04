@@ -23,7 +23,7 @@ public class PerformanceTest {
 			tbname = a[2];
 			matchType = a[3];
 		}else{
-			cbname = "Data/cb_react_no_flags_rs.cb";
+			cbname = "Data/cb_react_7_flags_rs.cb";
 			tbname = "Data/cb_react_no_flags_ls.cb";
 			matchType = "mean";
 		}
