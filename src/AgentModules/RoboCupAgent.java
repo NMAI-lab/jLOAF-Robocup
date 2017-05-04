@@ -1,3 +1,4 @@
+package AgentModules;
 import org.jLOAF.Agent;
 import org.jLOAF.MotorControl;
 import org.jLOAF.Perception;

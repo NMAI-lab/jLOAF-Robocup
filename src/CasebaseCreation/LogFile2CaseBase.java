@@ -1,3 +1,4 @@
+package CasebaseCreation;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -11,6 +12,9 @@ import org.jLOAF.casebase.CaseBase;
 import org.jLOAF.inputs.AtomicInput;
 import org.jLOAF.inputs.ComplexInput;
 import org.jLOAF.inputs.Feature;
+
+import AgentModules.RoboCupAction;
+import AgentModules.RoboCupInput;
 /***
  * author : sacha gunaratne 2017 may
  * **/
