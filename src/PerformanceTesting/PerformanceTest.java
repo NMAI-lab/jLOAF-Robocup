@@ -23,25 +23,26 @@ public class PerformanceTest {
 			tbname = a[2];
 			matchType = a[3];
 		}else{
-			cbname = "Data/cb_react_7_flags_rs.cb";
-			tbname = "Data/cb_react_no_flags_ls.cb";
-			matchType = "mean";
+			cbname = "Data/cb_react_all_flags_rs.cb";
+			tbname = "Data/cb_react_all_flags_ls.cb";
+			matchType = "gmm";
 		}
 		
 		CaseBase cb = CaseBase.load(cbname);
 		CaseBase tb = CaseBase.load(tbname);
 		
-		Sampling s = new Sampling();
-		CaseBase processed_cb = s.filter(cb);
-		RoboCupAgent agent = new RoboCupAgent(processed_cb);
+		//Sampling s = new Sampling();
+		//CaseBase processed_cb = s.filter(cb);
+		RoboCupAgent agent = new RoboCupAgent(cb);
 		agent.setSim(matchType);
 		Statistics stats_module = new Statistics(agent);
 		
+		System.out.println("Starting testing...");
 		for(Case test: tb.getCases()){
-			System.out.println("Starting testing...");
 			stats_module.predictedCorrectActionName(test);
 		}
 		System.out.println("Testing complete");
+		System.out.println(stats_module.getClassificationAccuracy());
 		
 	}
 }
