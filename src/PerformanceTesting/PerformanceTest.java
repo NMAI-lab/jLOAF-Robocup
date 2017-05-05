@@ -8,6 +8,7 @@ import org.jLOAF.performance.PerformanceMeasureCalculator;
 import org.jLOAF.performance.Statistics;
 import org.jLOAF.performance.StatisticsBundle;
 import org.jLOAF.preprocessing.filter.casebasefilter.Sampling;
+import org.jLOAF.util.CsvWriter;
 
 import AgentModules.RoboCupAgent;
 
@@ -42,7 +43,7 @@ public class PerformanceTest {
 		}
 		
 		ArrayList<StatisticsBundle>AllStats = new ArrayList<StatisticsBundle>();
-		PerformanceMeasureCalculator pmc = new PerformanceMeasureCalculator();
+		
 		
 		//loop over all casebases
 		for(int ii=0;ii<listOfCaseBases.size();ii++){
@@ -73,7 +74,7 @@ public class PerformanceTest {
 			ignore++;
 		}
 		
-		pmc.CalculateAllStats(AllStats);
-		
+		PerformanceMeasureCalculator pmc = new PerformanceMeasureCalculator(AllStats);
+		pmc.CalculateAllStats();
 	}
 }
