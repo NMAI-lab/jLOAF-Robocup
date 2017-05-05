@@ -16,7 +16,8 @@ import org.jLOAF.inputs.Feature;
 import AgentModules.RoboCupAction;
 import AgentModules.RoboCupInput;
 /***
- * author : sacha gunaratne 2017 may
+ * @author sacha gunaratne 
+ * @since 2017 may
  * **/
 public class LogFile2CaseBase {
 	//converts a log file into a casebase and writes to a file
