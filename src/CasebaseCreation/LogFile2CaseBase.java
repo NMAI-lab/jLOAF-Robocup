@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.*;
 
 import org.jLOAF.casebase.Case;
@@ -23,8 +24,8 @@ public class LogFile2CaseBase {
 	//converts a log file into a casebase and writes to a file
 	
 	public static void main(String [] args) throws IOException{
-		String logfile = "Data/Carleton_1.lsf";
-		String outfile = "Data/cb_react_all_flags_ls.cb";
+		String logfile = "Data/University_1.lsf";
+		String outfile = "Data/cb_react_all_flags_rs_new.cb";
 		
 		String [] flagPatterns = new String[45];
 		String [] flagPattern_Names = {"fcb", "flb","frb", "fct","flt", "frt", "fc","fplt", "fplc", "fplb", "fprt", "fprc", "fprb","ftl50","ftr50","fbl50","fbr50","ftl40","ftr40","fbl40","fbr40","ftl30","ftr30","fbl30","fbr30","ftl20","ftr20","fbl20","fbr20","ftl10","ftr10","fbl10","fbr10","frt30","frb30","flt30","flb30","frt20","frb20","flt20","flb20","frt10","frb10","flt10","flb10"};
@@ -106,6 +107,8 @@ public class LogFile2CaseBase {
 		ComplexInput ginput;
 		ComplexInput binput;
 		ComplexInput flaginput;
+		ComplexInput flags;
+		
 		
 		RoboCupInput input = null;
 		
@@ -209,6 +212,7 @@ public class LogFile2CaseBase {
 					}
 					
 					if(want_flags){
+						flags = new ComplexInput("flags");
 						for(int i =0;i<flagPatterns.length;i++){
 							flag = Pattern.compile(flagPatterns[i]);
 							m = flag.matcher(Line);
@@ -220,12 +224,14 @@ public class LogFile2CaseBase {
 								flaginput.add(new AtomicInput("dir", Angle));
 								
 								//add to input
-								input.add(flaginput);
+								flags.add(flaginput);
 							}
 						}
+						input.add(flags);
 					}
 					
 				}
+				
 				//only add to casebase if an state action pair exists
 				if(hasInput && hasAction){
 					Case c = new Case(input, action);
