@@ -42,6 +42,7 @@ public class PerformanceTest {
 			listOfCaseBases.add(CaseBase.load(s));
 		}
 		
+		//creates main stats bundle list
 		ArrayList<StatisticsBundle>AllStats = new ArrayList<StatisticsBundle>();
 		
 		
@@ -69,12 +70,19 @@ public class PerformanceTest {
 			}
 			
 			System.out.println("Testing complete");
+			//adds current stats bundle to main list
 			AllStats.add(stats_module.getStatisticsBundle());
 
 			ignore++;
 		}
 		
+		//calculate all stats
 		PerformanceMeasureCalculator pmc = new PerformanceMeasureCalculator(AllStats);
 		pmc.CalculateAllStats();
+		
+		//writes raw stats, and calculated stats into a csv file
+		CsvWriter writer = new CsvWriter();
+		writer.writeCalculatedStats("Sample.csv", pmc.getLabels(), pmc.calcMean(), pmc.calcStDev(pmc.calcMean(), pmc.calcMatrix()));
+		writer.writeRawStats("rawStats.csv", pmc.getLabels(), pmc.calcMatrix());
 	}
 }
