@@ -7,7 +7,6 @@ import org.jLOAF.casebase.CaseBase;
 import org.jLOAF.performance.PerformanceMeasureCalculator;
 import org.jLOAF.performance.Statistics;
 import org.jLOAF.performance.StatisticsBundle;
-import org.jLOAF.preprocessing.filter.casebasefilter.Sampling;
 import org.jLOAF.util.CsvWriter;
 
 import AgentModules.RoboCupAgent;
@@ -33,7 +32,7 @@ public class PerformanceTest {
 			cbname = new String[]{a[1]};
 			matchType = a[3];
 		}else{
-			cbname = new String[]{"Data/cb_react_all_flags_rs.cb","Data/cb_react_all_flags_ls.cb" };
+			cbname = new String[]{"Data/cb_react_all_flags_rs_new.cb","Data/cb_react_all_flags_ls_new.cb" };
 			matchType = "default";
 		}
 		
@@ -80,9 +79,9 @@ public class PerformanceTest {
 		PerformanceMeasureCalculator pmc = new PerformanceMeasureCalculator(AllStats);
 		pmc.CalculateAllStats();
 		
-		//writes raw stats, and calculated stats into a csv file
+		//writes calculated stats into a csv file
 		CsvWriter writer = new CsvWriter();
 		writer.writeCalculatedStats("Sample.csv", pmc.getLabels(), pmc.calcMean(), pmc.calcStDev(pmc.calcMean(), pmc.calcMatrix()));
-		writer.writeRawStats("rawStats.csv", pmc.getLabels(), pmc.calcMatrix());
+		
 	}
 }
