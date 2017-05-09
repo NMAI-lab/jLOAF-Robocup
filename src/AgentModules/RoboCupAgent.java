@@ -24,7 +24,7 @@ public class RoboCupAgent extends Agent {
 		this.p = new RoboCupPerception();
 		
 		this.r = new WeightedKNN(5,cb);
-		
+
 		RoboCupInput.setClassSimilarityMetric(new Mean());
 		//ComplexInput.setClassStrategy(new Mean());
 		AtomicInput.setClassStrategy(new EuclideanDistance());
