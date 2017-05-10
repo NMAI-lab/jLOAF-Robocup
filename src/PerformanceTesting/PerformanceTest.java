@@ -33,7 +33,7 @@ public class PerformanceTest {
 			matchType = a[3];
 		}else{
 			cbname = new String[]{"Data/cb_react_all_flags_rs_new.cb","Data/cb_react_all_flags_ls_new.cb" };
-			matchType = "default";
+			matchType = "gmm";
 		}
 		
 		//adds all casebases to masterlist
