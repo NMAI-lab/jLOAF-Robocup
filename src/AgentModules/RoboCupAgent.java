@@ -30,10 +30,9 @@ public class RoboCupAgent extends Agent {
 		SimilarityWeights sim_weights = new SimilarityWeights(1.0);
 		sim_weights.setFeatureWeight("ball", 10);
 		sim_weights.setFeatureWeight("goal r", 10);
-		sim_weights.setFeatureWeight("goal l", 10);
+		sim_weights.setFeatureWeight("goal l", 10); 
 		
 		RoboCupInput.setClassSimilarityMetric(new WeightedMean(sim_weights));
-		//ComplexInput.setClassStrategy(new Mean());
 		AtomicInput.setClassStrategy(new EuclideanDistance());
 		
 		this.cb = casebase;
@@ -41,7 +40,7 @@ public class RoboCupAgent extends Agent {
 
 	public void setSim(String matchType) {
 		if(matchType.equals("default")){
-			ComplexInput.setClassStrategy(new Mean());
+			ComplexInput.setClassStrategy(new WeightedMean(new SimilarityWeights(1.0)));
 		}else if(matchType.equals("gmm")){
 			ComplexInput.setClassStrategy(new GreedyMunkrezMatching());
 		}
