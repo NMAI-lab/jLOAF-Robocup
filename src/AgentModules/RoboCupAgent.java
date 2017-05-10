@@ -14,6 +14,8 @@ import org.jLOAF.sim.atomic.PercentDifference;
 import org.jLOAF.sim.complex.GreedyMunkrezMatching;
 import org.jLOAF.sim.complex.Hungarian_alg;
 import org.jLOAF.sim.complex.Mean;
+import org.jLOAF.sim.complex.WeightedMean;
+import org.jLOAF.weights.SimilarityWeights;
 
 public class RoboCupAgent extends Agent {
 
@@ -24,8 +26,13 @@ public class RoboCupAgent extends Agent {
 		this.p = new RoboCupPerception();
 		
 		this.r = new WeightedKNN(5,cb);
-
-		RoboCupInput.setClassSimilarityMetric(new Mean());
+		
+		SimilarityWeights sim_weights = new SimilarityWeights(1.0);
+		sim_weights.setFeatureWeight("ball", 10);
+		sim_weights.setFeatureWeight("goal r", 10);
+		sim_weights.setFeatureWeight("goal l", 10);
+		
+		RoboCupInput.setClassSimilarityMetric(new WeightedMean(sim_weights));
 		//ComplexInput.setClassStrategy(new Mean());
 		AtomicInput.setClassStrategy(new EuclideanDistance());
 		
