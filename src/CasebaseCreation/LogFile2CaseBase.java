@@ -23,9 +23,7 @@ import AgentModules.RoboCupInput;
 public class LogFile2CaseBase {
 	//converts a log file into a casebase and writes to a file
 	
-	public static void main(String [] args) throws IOException{
-		String logfile = "Data/University_1.lsf";
-		String outfile = "Data/cb_react_all_flags_rs_new.cb";
+	public void logParser(String logfile, String outfile) throws IOException{
 		
 		String [] flagPatterns = new String[45];
 		String [] flagPattern_Names = {"fcb", "flb","frb", "fct","flt", "frt", "fc","fplt", "fplc", "fplb", "fprt", "fprc", "fprb","ftl50","ftr50","fbl50","fbr50","ftl40","ftr40","fbl40","fbr40","ftl30","ftr30","fbl30","fbr30","ftl20","ftr20","fbl20","fbr20","ftl10","ftr10","fbl10","fbr10","frt30","frb30","flt30","flb30","frt20","frb20","flt20","flb20","frt10","frb10","flt10","flb10"};
