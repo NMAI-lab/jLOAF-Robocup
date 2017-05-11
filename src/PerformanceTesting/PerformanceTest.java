@@ -2,8 +2,10 @@ package PerformanceTesting;
 
 import java.util.ArrayList;
 
+import org.jLOAF.Agent;
 import org.jLOAF.casebase.Case;
 import org.jLOAF.casebase.CaseBase;
+import org.jLOAF.performance.PerformanceEvaluator;
 import org.jLOAF.performance.PerformanceMeasureCalculator;
 import org.jLOAF.performance.Statistics;
 import org.jLOAF.performance.StatisticsBundle;
@@ -17,71 +19,21 @@ import AgentModules.RoboCupAgent;
  * @author Sacha Gunaratne 
  * @since 2017 May 
  ***/
-public class PerformanceTest {
+public class PerformanceTest extends PerformanceEvaluator {
 	
 	public static void main(String a[]){
-		String [] cbname;
-		String matchType;
-		ArrayList<CaseBase> listOfCaseBases=new ArrayList<CaseBase>();
-		ArrayList<CaseBase> tempList = new ArrayList<CaseBase>();
-		int ignore =0;
-		CaseBase tb = null;
-		CaseBase cb = new CaseBase();;
+		String matchType = "gmm";
+		String [] cbname = {"Data/cb_react_all_flags_rs_new.cb","Data/cb_react_all_flags_ls_new.cb"};
 		
-		if(a.length>0){
-			cbname = new String[]{a[1]};
-			matchType = a[3];
-		}else{
-			cbname = new String[]{"Data/cb_react_all_flags_rs_new.cb","Data/cb_react_all_flags_ls_new.cb" };
-			matchType = "gmm";
-		}
+		PerformanceTest pt = new PerformanceTest();
+		pt.PerformanceEvaluatorMethod(matchType,cbname);
 		
-		//adds all casebases to masterlist
-		for(String s: cbname){
-			listOfCaseBases.add(CaseBase.load(s));
-		}
-		
-		//creates main stats bundle list
-		ArrayList<StatisticsBundle>AllStats = new ArrayList<StatisticsBundle>();
-		
-		
-		//loop over all casebases
-		for(int ii=0;ii<listOfCaseBases.size();ii++){
-			//temp list
-			tempList.addAll(listOfCaseBases);
-			
-			//add ignore index casebase to testbase tb and remove from templist
-			//add temp list to caseBase cb
-			for(int i=0;i<listOfCaseBases.size();i++){
-				if(ignore==i) {tb = listOfCaseBases.get(i);tempList.remove(ignore);}
-				else {cb.addListOfCaseBases(tempList);}
-			}
+	}
 
-			//create agent with cb
-			RoboCupAgent agent = new RoboCupAgent(cb);
-			agent.setSim(matchType);
-			Statistics stats_module = new Statistics(agent);
-			
-			//start testing 
-			System.out.println("Cycle: "+ ignore + " - Starting testing...");
-			for(Case test: tb.getCases()){
-				stats_module.predictedCorrectActionName(test);
-			}
-			
-			System.out.println("Testing complete");
-			//adds current stats bundle to main list
-			AllStats.add(stats_module.getStatisticsBundle());
-
-			ignore++;
-		}
-		
-		//calculate all stats
-		PerformanceMeasureCalculator pmc = new PerformanceMeasureCalculator(AllStats);
-		pmc.CalculateAllStats();
-		
-		//writes calculated stats into a csv file
-		CsvWriter writer = new CsvWriter();
-		writer.writeCalculatedStats("Sample.csv", pmc.getLabels(), pmc.calcMean(), pmc.calcStDev(pmc.calcMean(), pmc.calcMatrix()));
-		
+	@Override
+	public RoboCupAgent trainAgent(String matchType, CaseBase cb) {
+		RoboCupAgent agent = new RoboCupAgent(cb);
+		agent.setSim(matchType);
+		return agent;
 	}
 }
