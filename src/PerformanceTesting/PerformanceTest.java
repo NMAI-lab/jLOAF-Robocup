@@ -1,15 +1,8 @@
 package PerformanceTesting;
 
-import java.util.ArrayList;
-
-import org.jLOAF.Agent;
-import org.jLOAF.casebase.Case;
 import org.jLOAF.casebase.CaseBase;
 import org.jLOAF.performance.PerformanceEvaluator;
-import org.jLOAF.performance.PerformanceMeasureCalculator;
-import org.jLOAF.performance.Statistics;
-import org.jLOAF.performance.StatisticsBundle;
-import org.jLOAF.util.CsvWriter;
+
 
 import AgentModules.RoboCupAgent;
 
