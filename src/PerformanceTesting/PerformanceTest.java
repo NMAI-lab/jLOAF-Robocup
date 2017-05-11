@@ -1,10 +1,13 @@
 package PerformanceTesting;
 
+import java.io.IOException;
+
 import org.jLOAF.casebase.CaseBase;
 import org.jLOAF.performance.PerformanceEvaluator;
 
 
 import AgentModules.RoboCupAgent;
+import CasebaseCreation.LogFile2CaseBase;
 
 /***
  * This will create an agent with one caseBase and use a testBase to measure its performance. It will output all the performance measures such as
@@ -14,13 +17,12 @@ import AgentModules.RoboCupAgent;
  ***/
 public class PerformanceTest extends PerformanceEvaluator {
 	
-	public static void main(String a[]){
+	public static void main(String a[]) throws IOException{
 		String matchType = "gmm";
-		String [] cbname = {"Data/cb_react_all_flags_rs_new.cb","Data/cb_react_all_flags_ls_new.cb"};
+		String [] filenames = {"Data/Carleton_1.lsf","Data/University_1.lsf"};
 		
 		PerformanceTest pt = new PerformanceTest();
-		pt.PerformanceEvaluatorMethod(matchType,cbname);
-		
+		pt.PerformanceEvaluatorMethod(matchType,filenames);
 	}
 
 	@Override
@@ -28,5 +30,20 @@ public class PerformanceTest extends PerformanceEvaluator {
 		RoboCupAgent agent = new RoboCupAgent(cb);
 		agent.setSim(matchType);
 		return agent;
+	}
+
+	@Override
+	public String[] createArrayOfCasebaseNames(String[] filenames) throws IOException {
+		LogFile2CaseBase lg2cb = new LogFile2CaseBase();
+		int count = 0;
+		String [] cbnames = new String [filenames.length];
+		
+		for(String s: filenames){
+			String str = "Data/cb"+count+".cb";
+			cbnames[count]=str;
+			lg2cb.logParser(s,str);
+			count++;
+		}
+		return cbnames;
 	}
 }
