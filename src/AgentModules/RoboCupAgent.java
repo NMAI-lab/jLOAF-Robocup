@@ -3,9 +3,11 @@ import org.jLOAF.Agent;
 import org.jLOAF.MotorControl;
 import org.jLOAF.Perception;
 import org.jLOAF.Reasoning;
+import org.jLOAF.action.Action;
 import org.jLOAF.casebase.CaseBase;
 import org.jLOAF.inputs.AtomicInput;
 import org.jLOAF.inputs.ComplexInput;
+import org.jLOAF.inputs.Input;
 import org.jLOAF.reasoning.SimpleKNN;
 import org.jLOAF.reasoning.WeightedKNN;
 import org.jLOAF.sim.atomic.Equality;
@@ -44,6 +46,17 @@ public class RoboCupAgent extends Agent {
 		}else if(matchType.equals("gmm")){
 			ComplexInput.setClassStrategy(new GreedyMunkrezMatching());
 		}
+	}
+	
+	@Override
+	public RoboCupAction run(Input input) {
+		return (RoboCupAction) this.r.selectAction(input);
+	}
+
+	@Override
+	public void train(CaseBase casebase) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
