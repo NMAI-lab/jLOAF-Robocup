@@ -1,6 +1,9 @@
 package PerformanceTesting;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import org.jLOAF.casebase.CaseBase;
 import org.jLOAF.performance.PerformanceEvaluator;
@@ -18,7 +21,7 @@ import CasebaseCreation.LogFile2CaseBase;
 public class PerformanceTest extends PerformanceEvaluator {
 	
 	public static void main(String a[]) throws IOException{
-		String matchType = "gmm";
+		String matchType = "default";
 		String [] filenames = {"Data/Carleton_1.lsf","Data/University_1.lsf"};
 		
 		PerformanceTest pt = new PerformanceTest();
