@@ -21,7 +21,7 @@ import CasebaseCreation.LogFile2CaseBase;
 public class PerformanceTest extends PerformanceEvaluator {
 	
 	public static void main(String a[]) throws IOException{
-		String matchType = "default";
+		String matchType = "auction";
 		String [] filenames = {"Data/Carleton_1.lsf","Data/University_1.lsf"};
 		
 		PerformanceTest pt = new PerformanceTest();

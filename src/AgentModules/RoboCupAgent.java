@@ -13,8 +13,8 @@ import org.jLOAF.reasoning.WeightedKNN;
 import org.jLOAF.sim.atomic.Equality;
 import org.jLOAF.sim.atomic.EuclideanDistance;
 import org.jLOAF.sim.atomic.PercentDifference;
+import org.jLOAF.sim.complex.AuctionMaximalMatching;
 import org.jLOAF.sim.complex.GreedyMunkrezMatching;
-import org.jLOAF.sim.complex.Hungarian_alg;
 import org.jLOAF.sim.complex.Mean;
 import org.jLOAF.sim.complex.WeightedMean;
 import org.jLOAF.weights.SimilarityWeights;
@@ -45,6 +45,8 @@ public class RoboCupAgent extends Agent {
 			ComplexInput.setClassStrategy(new WeightedMean(new SimilarityWeights(1.0)));
 		}else if(matchType.equals("gmm")){
 			ComplexInput.setClassStrategy(new GreedyMunkrezMatching());
+		}else if(matchType.equals("auction")){
+			ComplexInput.setClassStrategy(new AuctionMaximalMatching());
 		}
 	}
 	
