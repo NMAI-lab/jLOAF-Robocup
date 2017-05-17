@@ -21,16 +21,14 @@ import CasebaseCreation.LogFile2CaseBase;
 public class PerformanceTest extends PerformanceEvaluator {
 	
 	public static void main(String a[]) throws IOException{
-		String matchType = "auction";
 		String [] filenames = {"Data/Carleton_1.lsf","Data/University_1.lsf"};
-		boolean doPreprocess = false;
 		
 		PerformanceTest pt = new PerformanceTest();
-		pt.PerformanceEvaluatorMethod(matchType,filenames,false);
+		pt.PerformanceEvaluatorMethod(filenames,null);
 	}
 
 	@Override
-	public RoboCupAgent createAgent(String matchType) {
+	public RoboCupAgent createAgent() {
 		RoboCupAgent agent = new RoboCupAgent();
 		return agent;
 	}
