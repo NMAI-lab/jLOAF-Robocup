@@ -261,18 +261,21 @@ public class LogFile2CaseBase {
 			}
 			
 			br.close();
+			
+			System.out.println("CaseBase created.");
+			//write to a file
+			System.out.println("Writing to file: " + outfile);
+			CaseBase.save(cb, outfile);
+			System.out.println("Done!");
+			
 		} catch (FileNotFoundException e) {
 			System.out.println(e.toString());
 		}
-		System.out.println("CaseBase created.");
-		//write to a file
-		System.out.println("Writing to file: " + outfile);
-		CaseBase.save(cb, outfile);
-		System.out.println("Done!");
+		
 	}
 	
 	public static void main(String a[]) throws IOException{
 		LogFile2CaseBase logparser = new LogFile2CaseBase();
-		logparser.logParser("Carleton_1.lsf", "testing.cb");
+		logparser.logParser("Data/Carleton_1.lsf", "testing.cb");
 	}
 }
