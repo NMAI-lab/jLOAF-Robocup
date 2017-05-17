@@ -23,15 +23,15 @@ public class PerformanceTest extends PerformanceEvaluator {
 	public static void main(String a[]) throws IOException{
 		String matchType = "auction";
 		String [] filenames = {"Data/Carleton_1.lsf","Data/University_1.lsf"};
+		boolean doPreprocess = false;
 		
 		PerformanceTest pt = new PerformanceTest();
-		pt.PerformanceEvaluatorMethod(matchType,filenames);
+		pt.PerformanceEvaluatorMethod(matchType,filenames,false);
 	}
 
 	@Override
-	public RoboCupAgent trainAgent(String matchType, CaseBase cb) {
-		RoboCupAgent agent = new RoboCupAgent(cb);
-		agent.setSim(matchType);
+	public RoboCupAgent createAgent(String matchType) {
+		RoboCupAgent agent = new RoboCupAgent();
 		return agent;
 	}
 
