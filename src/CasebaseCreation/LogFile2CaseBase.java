@@ -13,6 +13,12 @@ import org.jLOAF.casebase.CaseBase;
 import org.jLOAF.inputs.AtomicInput;
 import org.jLOAF.inputs.ComplexInput;
 import org.jLOAF.inputs.Feature;
+import org.jLOAF.sim.SimilarityMetricStrategy;
+import org.jLOAF.sim.atomic.EuclideanDistance;
+import org.jLOAF.sim.complex.GreedyMunkrezMatching;
+import org.jLOAF.sim.complex.Mean;
+import org.jLOAF.sim.complex.WeightedMean;
+import org.jLOAF.weights.SimilarityWeights;
 
 import AgentModules.RoboCupAction;
 import AgentModules.RoboCupInput;
@@ -116,8 +122,22 @@ public class LogFile2CaseBase {
 		boolean want_flags = true;
 		//casebase
 		CaseBase cb = new CaseBase();
-	
 		
+		//similarityMetrics
+		//atomic
+		SimilarityMetricStrategy Atomic_strat = new EuclideanDistance();
+		//complex
+		SimilarityMetricStrategy ballGoal_strat = new Mean();
+		SimilarityMetricStrategy flag_strat = new GreedyMunkrezMatching();
+		
+		//weights
+		SimilarityWeights sim_weights = new SimilarityWeights(1.0);
+		sim_weights.setFeatureWeight("ball", 10);
+		sim_weights.setFeatureWeight("goal r", 10);
+		sim_weights.setFeatureWeight("goal l", 10); 
+		
+		SimilarityMetricStrategy RoboCup_strat = new WeightedMean(sim_weights);
+	
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(logfile),'r');
 			String Line;
@@ -162,19 +182,19 @@ public class LogFile2CaseBase {
 				//check perception
 				m = vp.matcher(Line);
 				if(m.find()){
-					input = new RoboCupInput("SenseEnvironment");
+					input = new RoboCupInput("SenseEnvironment", RoboCup_strat);
 					hasInput = true;
 					//check goalDistance and goalAngle
 					m = gp.matcher(Line);
 					if(m.find()){
-						ginput = new ComplexInput("goal "+m.group(1).replace(")", ""));
+						ginput = new ComplexInput("goal "+m.group(1).replace(")", ""), ballGoal_strat);
 						//System.out.println(m.group(1).replace(')', ' '));
 						//System.out.println(m.group(2));
 						//System.out.println(m.group(3));
 						Feature goalDist = new Feature(Double.parseDouble(m.group(2))); 
 						Feature goalAngle = new Feature(Double.parseDouble(m.group(3)));
-						ginput.add(new AtomicInput("dist", goalDist));
-						ginput.add(new AtomicInput("dir", goalAngle));
+						ginput.add(new AtomicInput("dist", goalDist, Atomic_strat));
+						ginput.add(new AtomicInput("dir", goalAngle, Atomic_strat));
 						
 						//add to input
 						input.add(ginput);					
@@ -182,13 +202,13 @@ public class LogFile2CaseBase {
 					//check BallDistance and ballAngle
 					m = bp.matcher(Line);
 					if(m.find()){
-						binput = new ComplexInput("ball");
+						binput = new ComplexInput("ball",ballGoal_strat);
 						//System.out.println(m.group(1));
 						//System.out.println(m.group(2));
 						Feature ballDist = new Feature(Double.parseDouble(m.group(1))); 
 						Feature ballAngle = new Feature(Double.parseDouble(m.group(2)));
-						binput.add(new AtomicInput("dist", ballDist));
-						binput.add(new AtomicInput("dir", ballAngle));
+						binput.add(new AtomicInput("dist", ballDist, Atomic_strat));
+						binput.add(new AtomicInput("dir", ballAngle, Atomic_strat));
 						
 						//add to input
 						input.add(binput);	
@@ -197,29 +217,30 @@ public class LogFile2CaseBase {
 					//check BallDistance and ballAngle
 					m = bp2.matcher(Line);
 					if(m.find()){
-						binput = new ComplexInput("ball");
+						binput = new ComplexInput("ball",ballGoal_strat);
 						//System.out.println(m.group(1));
 						//System.out.println(m.group(2));
 						Feature ballDist = new Feature(Double.parseDouble(m.group(1))); 
 						Feature ballAngle = new Feature(Double.parseDouble(m.group(2)));
-						binput.add(new AtomicInput("dist", ballDist));
-						binput.add(new AtomicInput("dir", ballAngle));
+						binput.add(new AtomicInput("dist", ballDist, Atomic_strat));
+						binput.add(new AtomicInput("dir", ballAngle, Atomic_strat));
 						
 						//add to input
 						input.add(binput);	
 					}
 					
 					if(want_flags){
-						flags = new ComplexInput("flags");
+						flags = new ComplexInput("flags",flag_strat);
 						for(int i =0;i<flagPatterns.length;i++){
 							flag = Pattern.compile(flagPatterns[i]);
 							m = flag.matcher(Line);
 							if(m.find()){
-								flaginput = new ComplexInput(flagPattern_Names[i]);
+								flaginput = new ComplexInput(flagPattern_Names[i], ballGoal_strat);
+								
 								Feature Dist = new Feature(Double.parseDouble(m.group(1))); 
 								Feature Angle = new Feature(Double.parseDouble(m.group(2)));
-								flaginput.add(new AtomicInput("dist", Dist));
-								flaginput.add(new AtomicInput("dir", Angle));
+								flaginput.add(new AtomicInput("dist", Dist,Atomic_strat));
+								flaginput.add(new AtomicInput("dir", Angle,Atomic_strat));
 								
 								//add to input
 								flags.add(flaginput);
@@ -248,5 +269,10 @@ public class LogFile2CaseBase {
 		System.out.println("Writing to file: " + outfile);
 		CaseBase.save(cb, outfile);
 		System.out.println("Done!");
+	}
+	
+	public static void main(String a[]) throws IOException{
+		LogFile2CaseBase logparser = new LogFile2CaseBase();
+		logparser.logParser("Carleton_1.lsf", "testing.cb");
 	}
 }
