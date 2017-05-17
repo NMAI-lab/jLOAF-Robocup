@@ -21,33 +21,11 @@ import org.jLOAF.weights.SimilarityWeights;
 
 public class RoboCupAgent extends Agent {
 
-	public RoboCupAgent(CaseBase casebase) {
-		super(null, null, null, casebase);
+	public RoboCupAgent() {
+		super(null, null, null, null);
 		
 		this.mc = new RoboCupMotorControl();
 		this.p = new RoboCupPerception();
-		
-		this.r = new WeightedKNN(5,cb);
-		
-		SimilarityWeights sim_weights = new SimilarityWeights(1.0);
-		sim_weights.setFeatureWeight("ball", 10);
-		sim_weights.setFeatureWeight("goal r", 10);
-		sim_weights.setFeatureWeight("goal l", 10); 
-		
-		RoboCupInput.setClassSimilarityMetric(new WeightedMean(sim_weights));
-		AtomicInput.setClassStrategy(new EuclideanDistance());
-		
-		this.cb = casebase;
-	}
-
-	public void setSim(String matchType) {
-		if(matchType.equals("default")){
-			ComplexInput.setClassStrategy(new WeightedMean(new SimilarityWeights(1.0)));
-		}else if(matchType.equals("gmm")){
-			ComplexInput.setClassStrategy(new GreedyMunkrezMatching());
-		}else if(matchType.equals("auction")){
-			ComplexInput.setClassStrategy(new AuctionMaximalMatching());
-		}
 	}
 	
 	@Override
@@ -57,8 +35,8 @@ public class RoboCupAgent extends Agent {
 
 	@Override
 	public void train(CaseBase casebase) {
-		// TODO Auto-generated method stub
-		
+		this.cb = casebase;
+		this.r = new WeightedKNN(5,cb);
 	}
 	
 	
