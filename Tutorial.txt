@@ -1,0 +1,35 @@
+How to create a RoboCup playing using the jLOAF framework
+
+1) Create a RoboCupAgent that extends Agent
+  - override run(Input input) and train(CaseBase casebase) methods
+  - run(Input input) runs selectAction(input) on the reasoner to get the predicted action
+  - train(CaseBase casebase) assigns casebase to cb and creates the reasoner
+  
+2) Create RoboCupAction that extends AtomicAction
+  - the contructor takes a string and calls the super constructor
+  
+3) Create a RoboCupInput that extends ComplexInput
+  - the constructor takes a string and a similarityMetricStrategy and calls the super constructor
+  
+4) Create a RoboCupMotorControl and RoboCupPerception that extend MotorControl and Perception
+  - The methods in these are not defined since in the current state they are not used.
+  - Generally motorcontrol handles taking the action and interacting with the game environment
+  - Generally Perception handles converting a enviornment state into a understandable input for the agent
+  
+5) Create a class that converts the Log File into a casebase
+  - The logfile contains distance and direction from the player to flags, goals and the ball. 
+  - As well as the action taken at each timestep
+  - These are parsed using regex and converted into AtomicInputs and then added to ComplexInputs which are
+  - added to RoboCupInputs. The RoboCupInputs, along with the RoboCupActions are added to a Case. 
+  - These cases are added to the CaseBase. This CaseBase is written to a file. 
+  
+6) Create a PerformanceTest class that extends PerformanceEvaluator
+  - Override createAgent() and createArrayOfCaseBaseNames(String [] filenames)
+  - createAgent() is used to instantiate a RoboCupAgent
+  - createArrayOfCaseBaseNames(String [] filenames) takes a string [] of logfiles names, converts each log file into
+  - a CaseBase and returns a string [] of CaseBase names
+  - Create a new PerformanceTest object in the main method 
+  - Call PerfromanceEvaluatorMethod(String [] filenames, String Preprocessing)
+  - This will perform leaveOne out testing for each casebase provided and print out the metrics
+  - It will also output them to a .csv file for use in latex
+  
