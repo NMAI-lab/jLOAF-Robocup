@@ -1,0 +1,14 @@
+There are three aspects to imitation: Training, testing and running. 
+Testing involves determining the performance of the agent. 
+Running lets the agent into the environment to perform its actions with no otuside assistance. 
+
+Testing - run the PerformanceTest with the argument as a string [] of log file names
+
+Running - this requires downloading the Krislet_jLOAF, as well as the monitor and server from: 
+http://www.sce.carleton.ca/cgi-babak/agentcourse.cgi?browse=RoboCup
+
+The krislet_jLOAF has a Brain class which contains a RoboCupAgent which has been trained on CaseBase
+
+Run the server and then the monitor. 
+
+Then run either the TeamStart.bat or the Start2Agent.bat to create two teams of five agents or two teams of one agent each. 
