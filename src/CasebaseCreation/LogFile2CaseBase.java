@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.*;
@@ -19,6 +20,7 @@ import org.jLOAF.sim.complex.GreedyMunkrezMatching;
 import org.jLOAF.sim.complex.Mean;
 import org.jLOAF.sim.complex.WeightedMean;
 import org.jLOAF.weights.SimilarityWeights;
+import org.jLOAF.weights.Weights;
 
 import AgentModules.RoboCupAction;
 import AgentModules.RoboCupInput;
@@ -275,7 +277,15 @@ public class LogFile2CaseBase {
 	}
 	
 	public static void main(String a[]) throws IOException{
-		LogFile2CaseBase logparser = new LogFile2CaseBase();
-		logparser.logParser("Data/Carleton_1.lsf", "testing.cb");
+		
+			String file ="Data/cb0.cb";
+			CaseBase cb = CaseBase.load(file);
+			Weights weights = new SimilarityWeights(1.0);
+			HashMap<String,Double> featWeights =weights.calculateWeights(cb);
+			for(String featWeight:featWeights.keySet()){
+				System.out.println(featWeight+"  "+featWeights.get(featWeight));
+				
+			}
+		
 	}
 }
