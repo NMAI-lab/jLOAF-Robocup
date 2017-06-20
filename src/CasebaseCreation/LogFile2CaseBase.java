@@ -4,10 +4,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.*;
 
+import org.jLOAF.action.AtomicAction;
 import org.jLOAF.casebase.Case;
 import org.jLOAF.casebase.CaseBase;
 import org.jLOAF.inputs.AtomicInput;
@@ -19,6 +21,7 @@ import org.jLOAF.sim.complex.GreedyMunkrezMatching;
 import org.jLOAF.sim.complex.Mean;
 import org.jLOAF.sim.complex.WeightedMean;
 import org.jLOAF.weights.SimilarityWeights;
+import org.jLOAF.weights.Weights;
 
 import AgentModules.RoboCupAction;
 import AgentModules.RoboCupInput;
@@ -155,16 +158,18 @@ public class LogFile2CaseBase {
 						m = tp.matcher(Line);
 						if(m.find()){
 							//System.out.println(m.group(1));
-							Feature turnAngle = new Feature(Double.parseDouble(m.group(1)));
-							action.addFeature(turnAngle);
+							AtomicAction turnAngle = new AtomicAction("turnAngle");
+							turnAngle.setFeature(new Feature(Double.parseDouble(m.group(1))));
+							action.add(turnAngle);
 						}	
 					}else if (m.group(1).equals("dash")){
 						//check dashPower
 						m = dp.matcher(Line);
 						if(m.find()){
 							//System.out.println(m.group(1));
-							Feature dashPower = new Feature(Double.parseDouble(m.group(1)));
-							action.addFeature(dashPower);
+							AtomicAction dashPower =new AtomicAction("dashPower");
+							dashPower.setFeature(new Feature(Double.parseDouble(m.group(1))));
+							action.add(dashPower);
 						}
 					}else if(m.group(1).equals("kick")){
 						//check kickPower and kickAngle
@@ -172,10 +177,12 @@ public class LogFile2CaseBase {
 						if(m.find()){
 							//System.out.println(m.group(1));
 							//System.out.println(m.group(2));
-							Feature kickPower = new Feature(Double.parseDouble(m.group(1)));
-							Feature kickAngle = new Feature(Double.parseDouble(m.group(2)));
-							action.addFeature(kickPower);
-							action.addFeature(kickAngle);
+							AtomicAction kickPower = new AtomicAction("kickPower");
+							kickPower.setFeature(new Feature(Double.parseDouble(m.group(1))));
+							AtomicAction kickAngle = new AtomicAction("kickAngle"); 
+							kickAngle.setFeature(new Feature(Double.parseDouble(m.group(2))));
+							action.add(kickPower);
+							action.add(kickAngle);
 						}
 					}
 				}
@@ -193,8 +200,8 @@ public class LogFile2CaseBase {
 						//System.out.println(m.group(3));
 						Feature goalDist = new Feature(Double.parseDouble(m.group(2))); 
 						Feature goalAngle = new Feature(Double.parseDouble(m.group(3)));
-						ginput.add(new AtomicInput("goal_dist", goalDist, Atomic_strat));
-						ginput.add(new AtomicInput("goal_dir", goalAngle, Atomic_strat));
+						ginput.add(new AtomicInput("dist", goalDist, Atomic_strat));
+						ginput.add(new AtomicInput("dir", goalAngle, Atomic_strat));
 						
 						//add to input
 						input.add(ginput);					
@@ -207,8 +214,8 @@ public class LogFile2CaseBase {
 						//System.out.println(m.group(2));
 						Feature ballDist = new Feature(Double.parseDouble(m.group(1))); 
 						Feature ballAngle = new Feature(Double.parseDouble(m.group(2)));
-						binput.add(new AtomicInput("ball_dist", ballDist, Atomic_strat));
-						binput.add(new AtomicInput("ball_dir", ballAngle, Atomic_strat));
+						binput.add(new AtomicInput("dist", ballDist, Atomic_strat));
+						binput.add(new AtomicInput("dir", ballAngle, Atomic_strat));
 						
 						//add to input
 						input.add(binput);	
@@ -222,12 +229,12 @@ public class LogFile2CaseBase {
 						//System.out.println(m.group(2));
 						Feature ballDist = new Feature(Double.parseDouble(m.group(1))); 
 						Feature ballAngle = new Feature(Double.parseDouble(m.group(2)));
-						binput.add(new AtomicInput("ball_dist", ballDist, Atomic_strat));
-						binput.add(new AtomicInput("ball_dir", ballAngle, Atomic_strat));
+						binput.add(new AtomicInput("dist", ballDist, Atomic_strat));
+						binput.add(new AtomicInput("dir", ballAngle, Atomic_strat));
 						
 						//add to input
 						input.add(binput);	
-					} 
+					}
 					
 					if(want_flags){
 						flags = new ComplexInput("flags",flag_strat);
@@ -239,8 +246,8 @@ public class LogFile2CaseBase {
 								
 								Feature Dist = new Feature(Double.parseDouble(m.group(1))); 
 								Feature Angle = new Feature(Double.parseDouble(m.group(2)));
-								flaginput.add(new AtomicInput(flagPattern_Names[i] + "_dist", Dist,Atomic_strat));
-								flaginput.add(new AtomicInput(flagPattern_Names[i] + "_dir", Angle,Atomic_strat));
+								flaginput.add(new AtomicInput("dist", Dist,Atomic_strat));
+								flaginput.add(new AtomicInput("dir", Angle,Atomic_strat));
 								
 								//add to input
 								flags.add(flaginput);
@@ -274,16 +281,5 @@ public class LogFile2CaseBase {
 		
 	}
 	
-	public static void main(String a[]) throws IOException{
-//		LogFile2CaseBase logparser = new LogFile2CaseBase();
-//		logparser.logParser("Data/Carleton_1.lsf", "testing.cb");
-		CaseBase cb = CaseBase.load("testing.cb");
-		if(cb==null){System.out.println("Error");}
-		else{System.out.println("No Error");}
-		try {
-			CaseBase.saveAsTrace(cb,"Reactive_agent.txt");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+	
 }
