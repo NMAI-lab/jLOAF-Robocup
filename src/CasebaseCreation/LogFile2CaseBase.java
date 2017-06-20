@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.*;
 
+import org.jLOAF.action.AtomicAction;
 import org.jLOAF.casebase.Case;
 import org.jLOAF.casebase.CaseBase;
 import org.jLOAF.inputs.AtomicInput;
@@ -157,16 +158,18 @@ public class LogFile2CaseBase {
 						m = tp.matcher(Line);
 						if(m.find()){
 							//System.out.println(m.group(1));
-							Feature turnAngle = new Feature(Double.parseDouble(m.group(1)));
-							action.addFeature(turnAngle);
+							AtomicAction turnAngle = new AtomicAction("turnAngle");
+							turnAngle.setFeature(new Feature(Double.parseDouble(m.group(1))));
+							action.add(turnAngle);
 						}	
 					}else if (m.group(1).equals("dash")){
 						//check dashPower
 						m = dp.matcher(Line);
 						if(m.find()){
 							//System.out.println(m.group(1));
-							Feature dashPower = new Feature(Double.parseDouble(m.group(1)));
-							action.addFeature(dashPower);
+							AtomicAction dashPower =new AtomicAction("dashPower");
+							dashPower.setFeature(new Feature(Double.parseDouble(m.group(1))));
+							action.add(dashPower);
 						}
 					}else if(m.group(1).equals("kick")){
 						//check kickPower and kickAngle
@@ -174,10 +177,12 @@ public class LogFile2CaseBase {
 						if(m.find()){
 							//System.out.println(m.group(1));
 							//System.out.println(m.group(2));
-							Feature kickPower = new Feature(Double.parseDouble(m.group(1)));
-							Feature kickAngle = new Feature(Double.parseDouble(m.group(2)));
-							action.addFeature(kickPower);
-							action.addFeature(kickAngle);
+							AtomicAction kickPower = new AtomicAction("kickPower");
+							kickPower.setFeature(new Feature(Double.parseDouble(m.group(1))));
+							AtomicAction kickAngle = new AtomicAction("kickAngle"); 
+							kickAngle.setFeature(new Feature(Double.parseDouble(m.group(2))));
+							action.add(kickPower);
+							action.add(kickAngle);
 						}
 					}
 				}
@@ -276,16 +281,5 @@ public class LogFile2CaseBase {
 		
 	}
 	
-	public static void main(String a[]) throws IOException{
-		
-			String file ="Data/cb0.cb";
-			CaseBase cb = CaseBase.load(file);
-			Weights weights = new SimilarityWeights(1.0);
-			HashMap<String,Double> featWeights =weights.calculateWeights(cb);
-			for(String featWeight:featWeights.keySet()){
-				System.out.println(featWeight+"  "+featWeights.get(featWeight));
-				
-			}
-		
-	}
+	
 }
