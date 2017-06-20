@@ -200,8 +200,8 @@ public class LogFile2CaseBase {
 						//System.out.println(m.group(3));
 						Feature goalDist = new Feature(Double.parseDouble(m.group(2))); 
 						Feature goalAngle = new Feature(Double.parseDouble(m.group(3)));
-						ginput.add(new AtomicInput("dist", goalDist, Atomic_strat));
-						ginput.add(new AtomicInput("dir", goalAngle, Atomic_strat));
+						ginput.add(new AtomicInput("goal_dist", goalDist, Atomic_strat));
+						ginput.add(new AtomicInput("goal_dir", goalAngle, Atomic_strat));
 						
 						//add to input
 						input.add(ginput);					
@@ -214,8 +214,8 @@ public class LogFile2CaseBase {
 						//System.out.println(m.group(2));
 						Feature ballDist = new Feature(Double.parseDouble(m.group(1))); 
 						Feature ballAngle = new Feature(Double.parseDouble(m.group(2)));
-						binput.add(new AtomicInput("dist", ballDist, Atomic_strat));
-						binput.add(new AtomicInput("dir", ballAngle, Atomic_strat));
+						binput.add(new AtomicInput("ball_dist", ballDist, Atomic_strat));
+						binput.add(new AtomicInput("ball_dir", ballAngle, Atomic_strat));
 						
 						//add to input
 						input.add(binput);	
@@ -229,8 +229,8 @@ public class LogFile2CaseBase {
 						//System.out.println(m.group(2));
 						Feature ballDist = new Feature(Double.parseDouble(m.group(1))); 
 						Feature ballAngle = new Feature(Double.parseDouble(m.group(2)));
-						binput.add(new AtomicInput("dist", ballDist, Atomic_strat));
-						binput.add(new AtomicInput("dir", ballAngle, Atomic_strat));
+						binput.add(new AtomicInput("ball_dist", ballDist, Atomic_strat));
+						binput.add(new AtomicInput("ball_dir", ballAngle, Atomic_strat));
 						
 						//add to input
 						input.add(binput);	
@@ -246,8 +246,8 @@ public class LogFile2CaseBase {
 								
 								Feature Dist = new Feature(Double.parseDouble(m.group(1))); 
 								Feature Angle = new Feature(Double.parseDouble(m.group(2)));
-								flaginput.add(new AtomicInput("dist", Dist,Atomic_strat));
-								flaginput.add(new AtomicInput("dir", Angle,Atomic_strat));
+								flaginput.add(new AtomicInput(flagPattern_Names[i]+"_dist", Dist,Atomic_strat));
+								flaginput.add(new AtomicInput(flagPattern_Names[i]+"_dir", Angle,Atomic_strat));
 								
 								//add to input
 								flags.add(flaginput);
