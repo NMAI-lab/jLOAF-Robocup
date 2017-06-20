@@ -280,12 +280,8 @@ public class LogFile2CaseBase {
 		CaseBase cb = CaseBase.load("testing.cb");
 		if(cb==null){System.out.println("Error");}
 		else{System.out.println("No Error");}
-		List <String> actions = new ArrayList<String>();
-		actions.add("turn");
-		actions.add("dash");
-		actions.add("kick");
 		try {
-			CaseBase.saveAsTrace(cb,"Reactive_agent.txt",actions);
+			CaseBase.saveAsTrace(cb,"Reactive_agent.txt");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
