@@ -23,7 +23,7 @@ public class PerformanceTest extends PerformanceEvaluator {
 	public static void main(String a[]) throws IOException{
 		String [] filenames = {"Data/Carleton_1.lsf","Data/University_1.lsf"};
 		
-		PerformanceTest pt = new PerformanceTest();
+		PerformanceTest pt = new PerformanceTest(); 
 		pt.PerformanceEvaluatorMethod(filenames,null);
 	}
 

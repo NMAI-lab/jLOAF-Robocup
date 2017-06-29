@@ -4,7 +4,7 @@ import org.jLOAF.Agent;
 import org.jLOAF.casebase.CaseBase;
 
 import org.jLOAF.inputs.Input;
-
+import org.jLOAF.reasoning.BayesianReasoner;
 import org.jLOAF.reasoning.WeightedKNN;
 
 
@@ -25,7 +25,7 @@ public class RoboCupAgent extends Agent {
 	@Override
 	public void train(CaseBase casebase) {
 		this.cb = casebase;
-		this.r = new WeightedKNN(5,cb);
+		this.r = new BayesianReasoner(casebase);
 	}
 	
 	
