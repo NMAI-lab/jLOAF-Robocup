@@ -9,7 +9,8 @@ import org.jLOAF.reasoning.WeightedKNN;
 
 
 public class RoboCupAgent extends Agent {
-
+	private String filename = "C:/Users/sachagunaratne/Documents/GitHub/jLOAF-Robocup/Data/Bayesian_csv.txt";
+	
 	public RoboCupAgent() {
 		super(null, null, null, null);
 		
@@ -25,7 +26,7 @@ public class RoboCupAgent extends Agent {
 	@Override
 	public void train(CaseBase casebase) {
 		this.cb = casebase;
-		this.r = new BayesianReasoner(casebase);
+		this.r = new BayesianReasoner(casebase, filename);
 	}
 	
 	
