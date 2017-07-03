@@ -134,10 +134,11 @@ public class LogFile2CaseBase {
 		SimilarityMetricStrategy flag_strat = new GreedyMunkrezMatching();
 		
 		//weights
-		SimilarityWeights sim_weights = new SimilarityWeights(1.0);
-		sim_weights.setFeatureWeight("ball", 10);
-		sim_weights.setFeatureWeight("goal r", 10);
-		sim_weights.setFeatureWeight("goal l", 10); 
+		SimilarityWeights sim_weights = new SimilarityWeights();
+		sim_weights.setFeatureWeight("ball", 1);
+		sim_weights.setFeatureWeight("goal r", 1);
+		sim_weights.setFeatureWeight("goal l", 1);
+		sim_weights.setFeatureWeight("flags", 0); 
 		
 		SimilarityMetricStrategy RoboCup_strat = new WeightedMean(sim_weights);
 	
