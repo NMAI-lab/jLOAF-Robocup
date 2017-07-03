@@ -7,7 +7,8 @@ import java.util.List;
 
 import org.jLOAF.casebase.CaseBase;
 import org.jLOAF.performance.PerformanceEvaluator;
-
+import org.jLOAF.preprocessing.filter.CaseBaseFilter;
+import org.jLOAF.preprocessing.filter.featureSelection.WeightsSeperatorFilter;
 
 import AgentModules.RoboCupAgent;
 import CasebaseCreation.LogFile2CaseBase;
@@ -23,8 +24,9 @@ public class PerformanceTest extends PerformanceEvaluator {
 	public static void main(String a[]) throws IOException{
 		String [] filenames = {"Data/Carleton_1.lsf","Data/University_1.lsf"};
 		
+		CaseBaseFilter WSF = new WeightsSeperatorFilter(null);
 		PerformanceTest pt = new PerformanceTest(); 
-		pt.PerformanceEvaluatorMethod(filenames,null);
+		pt.PerformanceEvaluatorMethod(filenames, WSF);
 	}
 
 	@Override
