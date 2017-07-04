@@ -23,7 +23,7 @@ public class PerformanceTest extends PerformanceEvaluator {
 	
 	public static void main(String a[]) throws IOException{
 		String [] filenames = {"Data/Carleton_1.lsf","Data/University_1.lsf"};
-		String output_filename = "CBR_reactive.csv";
+		String output_filename = "Bayesian_reactive.csv";
 		
 		CaseBaseFilter WSF = new WeightsSeperatorFilter(null);
 		PerformanceTest pt = new PerformanceTest(); 
