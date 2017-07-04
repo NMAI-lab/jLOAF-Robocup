@@ -134,14 +134,11 @@ public class LogFile2CaseBase {
 		//complex
 		SimilarityMetricStrategy ballGoal_strat = new Mean();
 		SimilarityMetricStrategy flag_strat = new GreedyMunkrezMatching();
+		//reactive
 		StateBasedSimilarity stateBasedSim = new KOrderedSimilarity(1);
 		
 		//weights
-		SimilarityWeights sim_weights = new SimilarityWeights();
-		sim_weights.setFeatureWeight("ball", 1);
-		sim_weights.setFeatureWeight("goal r", 1);
-		sim_weights.setFeatureWeight("goal l", 1);
-		sim_weights.setFeatureWeight("flags", 0); 
+		SimilarityWeights sim_weights = new SimilarityWeights(); 
 		
 		SimilarityMetricStrategy RoboCup_strat = new WeightedMean(sim_weights);
 	
@@ -270,6 +267,12 @@ public class LogFile2CaseBase {
 					hasAction = false;
 				}	
 			}
+			
+			//manual weight selection
+			sim_weights.setFeatureWeight("ball", 1);
+			sim_weights.setFeatureWeight("goal r", 1);
+			sim_weights.setFeatureWeight("goal l", 1);
+			sim_weights.setFeatureWeight("flags", 0);
 			
 			br.close();
 			
