@@ -16,6 +16,8 @@ import org.jLOAF.inputs.AtomicInput;
 import org.jLOAF.inputs.ComplexInput;
 import org.jLOAF.inputs.Feature;
 import org.jLOAF.sim.SimilarityMetricStrategy;
+import org.jLOAF.sim.StateBasedSimilarity;
+import org.jLOAF.sim.StateBased.KOrderedSimilarity;
 import org.jLOAF.sim.atomic.EuclideanDistance;
 import org.jLOAF.sim.complex.GreedyMunkrezMatching;
 import org.jLOAF.sim.complex.Mean;
@@ -132,6 +134,7 @@ public class LogFile2CaseBase {
 		//complex
 		SimilarityMetricStrategy ballGoal_strat = new Mean();
 		SimilarityMetricStrategy flag_strat = new GreedyMunkrezMatching();
+		StateBasedSimilarity stateBasedSim = new KOrderedSimilarity(1);
 		
 		//weights
 		SimilarityWeights sim_weights = new SimilarityWeights();
@@ -262,7 +265,7 @@ public class LogFile2CaseBase {
 				//only add to casebase if an state action pair exists
 				if(hasInput && hasAction){
 					//Case c = new Case(input, action);
-					cb.createThenAdd(input, action);
+					cb.createThenAdd(input, action, stateBasedSim);
 					hasInput = false;
 					hasAction = false;
 				}	
