@@ -261,8 +261,8 @@ public class LogFile2CaseBase {
 				
 				//only add to casebase if an state action pair exists
 				if(hasInput && hasAction){
-					Case c = new Case(input, action);
-					cb.add(c);
+					//Case c = new Case(input, action);
+					cb.createThenAdd(input, action);
 					hasInput = false;
 					hasAction = false;
 				}	
