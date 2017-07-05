@@ -5,6 +5,7 @@ import org.jLOAF.casebase.CaseBase;
 
 import org.jLOAF.inputs.Input;
 import org.jLOAF.reasoning.BayesianReasoner;
+import org.jLOAF.reasoning.DynamicBayesianReasoner;
 import org.jLOAF.reasoning.WeightedKNN;
 
 
