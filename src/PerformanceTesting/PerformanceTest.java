@@ -8,6 +8,7 @@ import java.util.List;
 import org.jLOAF.casebase.CaseBase;
 import org.jLOAF.performance.PerformanceEvaluator;
 import org.jLOAF.preprocessing.filter.CaseBaseFilter;
+import org.jLOAF.preprocessing.filter.casebasefilter.Sampling;
 import org.jLOAF.preprocessing.filter.featureSelection.WeightsSeperatorFilter;
 import org.jLOAF.preprocessing.standardization.Standardization;
 
@@ -23,12 +24,14 @@ import CasebaseCreation.LogFile2CaseBase;
 public class PerformanceTest extends PerformanceEvaluator {
 	
 	public static void main(String a[]) throws IOException{
-		String [] filenames = {"Data/Carleton_1.lsf","Data/University_1.lsf"};
-		String output_filename = "DBNBayesian_plcholder_reactive.csv";
+		String [] filenames = {"Data/Carleton_1_wstate.lsf","Data/University_1_wstate.lsf"};
+		String output_filename = "Results/kordered20_state.csv";
+		
 		
 		CaseBaseFilter WSF = new WeightsSeperatorFilter(null);
 		CaseBaseFilter standardize = new Standardization(WSF);
-		PerformanceTest pt = new PerformanceTest(); 
+		//CaseBaseFilter sample = new Sampling(standardize);
+		PerformanceTest pt = new PerformanceTest();
 		pt.PerformanceEvaluatorMethod(filenames, standardize, output_filename);
 	}
 

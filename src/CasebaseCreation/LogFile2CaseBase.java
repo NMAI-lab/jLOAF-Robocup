@@ -18,6 +18,7 @@ import org.jLOAF.inputs.Feature;
 import org.jLOAF.sim.SimilarityMetricStrategy;
 import org.jLOAF.sim.StateBasedSimilarity;
 import org.jLOAF.sim.StateBased.KOrderedSimilarity;
+import org.jLOAF.sim.StateBased.OrderedSimilarity;
 import org.jLOAF.sim.atomic.EuclideanDistance;
 import org.jLOAF.sim.complex.GreedyMunkrezMatching;
 import org.jLOAF.sim.complex.Mean;
@@ -135,7 +136,7 @@ public class LogFile2CaseBase {
 		SimilarityMetricStrategy ballGoal_strat = new Mean();
 		SimilarityMetricStrategy flag_strat = new GreedyMunkrezMatching();
 		//reactive
-		StateBasedSimilarity stateBasedSim = new KOrderedSimilarity(1);
+		StateBasedSimilarity stateBasedSim = new KOrderedSimilarity(5);
 		
 		//weights
 		SimilarityWeights sim_weights = new SimilarityWeights(); 
