@@ -31,10 +31,57 @@ import AgentModules.RoboCupInput;
 /***
  * @author sacha gunaratne 
  * @since 2017 may
+ * 
+ * @constructor: None
+ * @Methods:
+ * logParser: converts a logfile into a casebase and writes the casebase to a file
  * **/
 public class LogFile2CaseBase {
-	//converts a log file into a casebase and writes to a file
 	
+	/***
+	 * Converts a logfile into a CaseBase and writes it to a file.
+	 * 
+	 * This method uses Regex to identify important pieces of the logfile such as ball, goal, and flags and extract their direction and angle in relation to the player
+	 * These are placed into a input structure as the following. 
+	 * 					  StateBasedInput
+	 * 						    |
+	 * ComplexInput 		 RobocupInput
+	 * 						/	  |	      \
+	 * ComplexInput		Goal	 Flags      Ball
+	 * 					/ \       /  \        / \
+	 * AtomicInput     Dir Dist Dir Dist  Dir Dist
+	 *					|   |    |   |     |   |
+	 * Feature         .f  .f    .f  .f    .f  .f
+	 * 
+	 * Each input has a specific SimilarityMetric. 
+	 * RoboCupInput has a weightedMean SimilarityMetric where the weights are initialized as default(w==0).
+	 * They have been manually updated on line 303-307. They can be manually solved for using any WeightSelectiuon Algorithm. 
+	 * 
+	 * The input is created and if there is an action that exists on the next line, it is read as well.
+	 * 
+	 * The actions follow a similar structure:
+	 * 	ComplexAction			RoboCupAction
+	 * 								|
+	 * 	AtomicAction 			turnAngle
+	 *  							|
+	 *  Feature					   .f
+	 * 
+	 * The complexAction RoboCupAction can contain multiple AtomicActions, depending on the situation. Kick has two AtomicActions - dir and power
+	 * 
+	 * When both an action and input have been created, they will be added to the CaseBase.
+	 * 
+	 * Once, the logfile has been comepltely read through, the caseBase is written to file. 
+	 * 
+	 * @param 
+	 * logfile: Logfile containing trace information
+	 * outfile: the output path of the CaseBase
+	 * 
+	 *  @return: nothing
+	 *  
+	 *  @author sachagunaratne
+	 *  @since May 2017
+	 * 
+	 * ***/
 	public void logParser(String logfile, String outfile) throws IOException{
 		
 		String [] flagPatterns = new String[45];

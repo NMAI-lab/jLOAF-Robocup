@@ -23,6 +23,23 @@ import CasebaseCreation.LogFile2CaseBase;
  ***/
 public class PerformanceTest extends PerformanceEvaluator {
 	
+	/***
+	 * This main function requires multiple parameters to be setup:
+	 * 
+	 * @param 
+	 * filenames: Array of logfiles
+	 * output_filename: Path and name of the output statistics file
+	 * 
+	 * @optional_params
+	 * CaseBaseFilter: Single or multiple CaseBaseFilters that are chained together
+	 * Reasoner: Reasoner type
+	 * StateBasedSimilarityMetric: Similarity for stateBasedInputs
+	 * ComplexSimilarityMetric: Similarity Strategy for ComplexInputs
+	 * 
+	 * PerformanceTest: A performance Testing object, that takes the above parameters and performs cross-validation and return statistics.
+	 * (see the PerformanceTest in jLOAF for further instructions)
+	 *  
+	 * ***/
 	public static void main(String a[]) throws IOException{
 		String [] filenames = {"Data/Carleton_1.lsf","Data/University_1.lsf"};
 		String output_filename = "Results/BN_reactive.csv";
@@ -34,13 +51,27 @@ public class PerformanceTest extends PerformanceEvaluator {
 		PerformanceTest pt = new PerformanceTest();
 		pt.PerformanceEvaluatorMethod(filenames, WSF, output_filename,"bayesian",null, null);
 	}
-
+	
+	/***
+	 * Creates an agent
+	 * @param: Nothing
+	 * @return: an Agent
+	 * ***/
 	@Override
 	public RoboCupAgent createAgent() {
 		RoboCupAgent agent = new RoboCupAgent();
 		return agent;
 	}
-
+	/***
+	 * Parses and creates CaseBases from logfiles
+	 * @param
+	 * filenames: An array of logfile names which contain run information
+	 * 
+	 * @return
+	 * cbnames: An array of CaseBase names
+	 * 
+	 * @author sachagunaratne
+	 * ***/
 	@Override
 	public String[] createArrayOfCasebaseNames(String[] filenames) throws IOException {
 		LogFile2CaseBase lg2cb = new LogFile2CaseBase();
