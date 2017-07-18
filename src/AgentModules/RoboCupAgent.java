@@ -13,7 +13,7 @@ import org.jLOAF.reasoning.WeightedKNN;
 
 
 public class RoboCupAgent extends Agent {
-	private String filename = "C:/Users/sachagunaratne/Documents/GitHub/jLOAF-Robocup/Data/kordered20_state_csv.txt";
+	private String filename = "C:/Users/sachagunaratne/Documents/GitHub/jLOAF-Robocup/Data/BN_reactive.txt";
 	
 	public RoboCupAgent() {
 		super(null, null, null, null);
@@ -30,8 +30,10 @@ public class RoboCupAgent extends Agent {
 	@Override
 	public void train(CaseBase casebase) {
 		this.cb = casebase;
-		//this.r = new DynamicBayesianReasoner(casebase, filename);
-		this.r = new WeightedKNN(5, casebase);
+		if(r!=null){
+			this.r = new BayesianReasoner(casebase, filename);
+		}
+		//this.r = new WeightedKNN(5, casebase);
 		//this.r = new TBReasoning(casebase);
 		//this.r = new NeuralNetworkReasoner(casebase, filename);
 	}

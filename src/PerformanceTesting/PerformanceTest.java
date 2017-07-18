@@ -24,15 +24,15 @@ import CasebaseCreation.LogFile2CaseBase;
 public class PerformanceTest extends PerformanceEvaluator {
 	
 	public static void main(String a[]) throws IOException{
-		String [] filenames = {"Data/Carleton_1_wstate.lsf","Data/University_1_wstate.lsf"};
-		String output_filename = "Results/kordered20_state.csv";
+		String [] filenames = {"Data/Carleton_1.lsf","Data/University_1.lsf"};
+		String output_filename = "Results/BN_reactive.csv";
 		
 		
 		CaseBaseFilter WSF = new WeightsSeperatorFilter(null);
-		CaseBaseFilter standardize = new Standardization(WSF);
+		//CaseBaseFilter standardize = new Standardization(WSF);
 		//CaseBaseFilter sample = new Sampling(standardize);
 		PerformanceTest pt = new PerformanceTest();
-		pt.PerformanceEvaluatorMethod(filenames, standardize, output_filename);
+		pt.PerformanceEvaluatorMethod(filenames, WSF, output_filename,"bayesian",null, null);
 	}
 
 	@Override
