@@ -28,17 +28,17 @@ import org.jLOAF.weights.Weights;
 
 import AgentModules.RoboCupAction;
 import AgentModules.RoboCupInput;
-/***
+/**
  * @author sacha gunaratne 
  * @since 2017 may
  * 
- * @constructor: None
+ * @Constructor: None
  * @Methods:
  * logParser: converts a logfile into a casebase and writes the casebase to a file
  * **/
 public class LogFile2CaseBase {
 	
-	/***
+	/**
 	 * Converts a logfile into a CaseBase and writes it to a file.
 	 * 
 	 * This method uses Regex to identify important pieces of the logfile such as ball, goal, and flags and extract their direction and angle in relation to the player
@@ -72,11 +72,10 @@ public class LogFile2CaseBase {
 	 * 
 	 * Once, the logfile has been comepltely read through, the caseBase is written to file. 
 	 * 
-	 * @param 
-	 * logfile: Logfile containing trace information
-	 * outfile: the output path of the CaseBase
+	 * @param logfile Logfile containing trace information
+	 * @param outfile the output path of the CaseBase
 	 * 
-	 *  @return: nothing
+	 *  @return nothing
 	 *  
 	 *  @author sachagunaratne
 	 *  @since May 2017

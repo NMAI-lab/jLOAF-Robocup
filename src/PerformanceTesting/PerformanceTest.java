@@ -23,20 +23,19 @@ import CasebaseCreation.LogFile2CaseBase;
  ***/
 public class PerformanceTest extends PerformanceEvaluator {
 	
-	/***
+	/**
 	 * This main function requires multiple parameters to be setup:
 	 * 
-	 * @param 
-	 * filenames: Array of logfiles
-	 * output_filename: Path and name of the output statistics file
+	 * @param filenames Array of logfiles 
+	 * @param output_filename Path and name of the output statistics file
 	 * 
-	 * @optional_params
-	 * CaseBaseFilter: Single or multiple CaseBaseFilters that are chained together
-	 * Reasoner: Reasoner type
-	 * StateBasedSimilarityMetric: Similarity for stateBasedInputs
-	 * ComplexSimilarityMetric: Similarity Strategy for ComplexInputs
 	 * 
-	 * PerformanceTest: A performance Testing object, that takes the above parameters and performs cross-validation and return statistics.
+	 * @param CaseBaseFilter: Single or multiple CaseBaseFilters that are chained together
+	 * @param String Reasoner: Reasoner type
+	 * @param String StateBasedSimilarityMetric: Similarity for stateBasedInputs
+	 * @param String ComplexSimilarityMetric: Similarity Strategy for ComplexInputs
+	 * 
+	 * @FinalObject PerformanceTest: A performance Testing object, that takes the above parameters and performs cross-validation and return statistics.
 	 * (see the PerformanceTest in jLOAF for further instructions)
 	 *  
 	 * ***/
@@ -52,23 +51,21 @@ public class PerformanceTest extends PerformanceEvaluator {
 		pt.PerformanceEvaluatorMethod(filenames, WSF, output_filename,"bayesian",null, null);
 	}
 	
-	/***
+	/**
 	 * Creates an agent
-	 * @param: Nothing
-	 * @return: an Agent
+	 * @param Nothing
+	 * @return an Agent
 	 * ***/
 	@Override
 	public RoboCupAgent createAgent() {
 		RoboCupAgent agent = new RoboCupAgent();
 		return agent;
 	}
-	/***
+	/**
 	 * Parses and creates CaseBases from logfiles
-	 * @param
-	 * filenames: An array of logfile names which contain run information
+	 * @param filenames An array of logfile names which contain run information
 	 * 
-	 * @return
-	 * cbnames: An array of CaseBase names
+	 * @return cbnames An array of CaseBase names
 	 * 
 	 * @author sachagunaratne
 	 * ***/

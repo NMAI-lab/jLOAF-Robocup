@@ -11,17 +11,16 @@ import org.jLOAF.reasoning.NeuralNetworkReasoner;
 import org.jLOAF.reasoning.TBReasoning;
 import org.jLOAF.reasoning.WeightedKNN;
 
-
+/***
+ * @constructor: 
+ * creates a Agent using super
+ * 
+ * @methods run Takes an input and calls the selectAction function that exists in reasoner which returns an Action
+ * @methods train Takes a CaseBase, checks if the reasoner is null, and if it is then sets the reasoner to a specified reasoner. 
+ * 
+ * ***/
 public class RoboCupAgent extends Agent {
-	/***
-	 * @constructor: 
-	 * creates a Agent using super
-	 * 
-	 * @methods:
-	 * run: Takes an input and calls the selectAction function that exists in reasoner which returns an Action
-	 * train: Takes a CaseBase, checks if the reasoner is null, and if it is then sets the reasoner to a specified reasoner. 
-	 * 
-	 * ***/
+
 	private String filename = "C:/Users/sachagunaratne/Documents/GitHub/jLOAF-Robocup/Data/BN_reactive.txt";
 	
 	public RoboCupAgent() {
