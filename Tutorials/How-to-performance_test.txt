@@ -1,0 +1,13 @@
+Performance testing involves performing leave one out testing on the provided casebases.
+
+It is done running PerformanceTesting.PerformanceTest.java.
+
+The setup of this class is provided in the setup.md. 
+
+The requirements for this method are to create, a string [] of logfile names, an output filename, CaseBasefilter(s) if required.
+
+One can also create Strings for the reasoning type, StateBasedInput and ComplexSimilarity MetricStrategies which are passed to
+PerformanceEvaluatroMethod.
+
+Running this will perform leave one out testing on the providfed logfiles and print out the statistics to console as well
+as write them to a csv file. 
