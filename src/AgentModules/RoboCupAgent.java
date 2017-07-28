@@ -38,9 +38,6 @@ public class RoboCupAgent extends Agent {
 	@Override
 	public void train(CaseBase casebase) {
 		this.cb = casebase;
-		if(r!=null){
-			this.r = new BayesianReasoner(casebase, filename);
-		}
 		//this.r = new WeightedKNN(5, casebase);
 		//this.r = new TBReasoning(casebase);
 		//this.r = new NeuralNetworkReasoner(casebase, filename);
