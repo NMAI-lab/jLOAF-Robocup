@@ -48,9 +48,9 @@ public class PerformanceTest extends PerformanceEvaluator {
 		CaseBaseFilter WSF = new WeightsSeperatorFilter(null);
 		CaseBaseFilter standardize = new Standardization(WSF);
 		//CaseBaseFilter smote = new UnderSampling(standardize);
-		CaseBaseFilter sample = new Sampling(standardize);
+		//CaseBaseFilter sample = new Sampling(standardize);
 		PerformanceTest pt = new PerformanceTest();
-		pt.PerformanceEvaluatorMethod(filenames, sample, output_filename,"weightedKNN","korderd_r", null);
+		pt.PerformanceEvaluatorMethod(filenames, standardize, output_filename,"weightedKNN","kordered_r", null);
 	}
 	
 	/**
