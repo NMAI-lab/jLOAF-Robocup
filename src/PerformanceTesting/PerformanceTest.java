@@ -8,6 +8,7 @@ import java.util.List;
 import org.jLOAF.casebase.CaseBase;
 import org.jLOAF.performance.PerformanceEvaluator;
 import org.jLOAF.preprocessing.filter.CaseBaseFilter;
+import org.jLOAF.preprocessing.filter.casebasefilter.UnderSampling;
 import org.jLOAF.preprocessing.filter.casebasefilter.Sampling;
 import org.jLOAF.preprocessing.filter.featureSelection.WeightsSeperatorFilter;
 import org.jLOAF.preprocessing.standardization.Standardization;
@@ -40,15 +41,16 @@ public class PerformanceTest extends PerformanceEvaluator {
 	 *  
 	 * ***/
 	public static void main(String a[]) throws IOException{
-		String [] filenames = {"Data/Carleton_1.lsf","Data/University_1.lsf"};
-		String output_filename = "Results/BN_reactive.csv";
+		String [] filenames = {"Data/Carleton_1.lsf","Data/Carleton_2.lsf"};
+		String output_filename = "Results/wKNN_reactive.csv";
 		
 		
 		CaseBaseFilter WSF = new WeightsSeperatorFilter(null);
-		//CaseBaseFilter standardize = new Standardization(WSF);
+		CaseBaseFilter standardize = new Standardization(WSF);
+		//CaseBaseFilter smote = new UnderSampling(standardize);
 		//CaseBaseFilter sample = new Sampling(standardize);
 		PerformanceTest pt = new PerformanceTest();
-		pt.PerformanceEvaluatorMethod(filenames, WSF, output_filename,"bayesian",null, null);
+		pt.PerformanceEvaluatorMethod(filenames, standardize, output_filename,"weightedKNN","korderd_r", null);
 	}
 	
 	/**

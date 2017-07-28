@@ -160,7 +160,8 @@ public class LogFile2CaseBase {
 		
 		//inputs
 		RoboCupAction action = null;
-		ComplexInput ginput;
+		ComplexInput ginput1;
+		ComplexInput ginput2;
 		ComplexInput binput;
 		ComplexInput flaginput;
 		ComplexInput flags;
@@ -242,17 +243,36 @@ public class LogFile2CaseBase {
 					//check goalDistance and goalAngle
 					m = gp.matcher(Line);
 					if(m.find()){
-						ginput = new ComplexInput("goal "+m.group(1).replace(")", ""), ballGoal_strat);
-						//System.out.println(m.group(1).replace(')', ' '));
-						//System.out.println(m.group(2));
-						//System.out.println(m.group(3));
+						if(m.group(1).replace(")", "").equals("r")){
+							ginput2 = new ComplexInput("goal l", ballGoal_strat);
+							ginput1 = new ComplexInput("goal r", ballGoal_strat);
+						}else{
+							ginput2 = new ComplexInput("goal r", ballGoal_strat);
+							ginput1 = new ComplexInput("goal l", ballGoal_strat);
+						}
+
 						Feature goalDist = new Feature(Double.parseDouble(m.group(2))); 
 						Feature goalAngle = new Feature(Double.parseDouble(m.group(3)));
-						ginput.add(new AtomicInput("goal_dist", goalDist, Atomic_strat));
-						ginput.add(new AtomicInput("goal_dir", goalAngle, Atomic_strat));
+						ginput1.add(new AtomicInput("goal_dist", goalDist, Atomic_strat));
+						ginput1.add(new AtomicInput("goal_dir", goalAngle, Atomic_strat));
 						
+						if(m.group(1).replace(")", "").equals("r")){
+							ginput1.add(new AtomicInput("goal_seenR",new Feature(1.0), Atomic_strat));
+							ginput2.add(new AtomicInput("goal_seenL",new Feature(0.0), Atomic_strat));
+						}else{
+							ginput1.add(new AtomicInput("goal_seenR",new Feature(0.0), Atomic_strat));
+							ginput2.add(new AtomicInput("goal_seenL",new Feature(1.0), Atomic_strat));
+						}
 						//add to input
-						input.add(ginput);					
+						input.add(ginput1);	
+						input.add(ginput2);
+					}else{
+						ginput1 = new ComplexInput("goal r", ballGoal_strat);
+						ginput2 = new ComplexInput("goal l", ballGoal_strat);
+						ginput1.add(new AtomicInput("goal_seenR",new Feature(0.0), Atomic_strat));
+						ginput2.add(new AtomicInput("goal_seenL",new Feature(0.0), Atomic_strat));
+						input.add(ginput1);	
+						input.add(ginput2);
 					}
 					//check BallDistance and ballAngle
 					m = bp.matcher(Line);
@@ -264,8 +284,13 @@ public class LogFile2CaseBase {
 						Feature ballAngle = new Feature(Double.parseDouble(m.group(2)));
 						binput.add(new AtomicInput("ball_dist", ballDist, Atomic_strat));
 						binput.add(new AtomicInput("ball_dir", ballAngle, Atomic_strat));
+						binput.add(new AtomicInput("ball_seen",new Feature(1.0),Atomic_strat));
 						
 						//add to input
+						input.add(binput);	
+					}else{
+						binput = new ComplexInput("ball",ballGoal_strat);
+						binput.add(new AtomicInput("ball_seen",new Feature(0.0),Atomic_strat));
 						input.add(binput);	
 					}
 					
@@ -279,7 +304,7 @@ public class LogFile2CaseBase {
 						Feature ballAngle = new Feature(Double.parseDouble(m.group(2)));
 						binput.add(new AtomicInput("ball_dist", ballDist, Atomic_strat));
 						binput.add(new AtomicInput("ball_dir", ballAngle, Atomic_strat));
-						
+						binput.add(new AtomicInput("ball_seen",new Feature(1.0),Atomic_strat));
 						//add to input
 						input.add(binput);	
 					}
