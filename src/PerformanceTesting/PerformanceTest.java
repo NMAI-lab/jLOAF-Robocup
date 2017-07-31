@@ -41,16 +41,16 @@ public class PerformanceTest extends PerformanceEvaluator {
 	 *  
 	 * ***/
 	public static void main(String a[]) throws IOException{
-		String [] filenames = {"Data/Carleton_1.lsf","Data/Carleton_2.lsf"};
-		String output_filename = "Results/weightedKNN_reactive_sampling.csv";
+		String [] filenames = {"Data/Carleton_1.lsf","Data/Carleton_1.lsf"};
+		String output_filename = "Results/weightedKNN_reactive_replace_smote.csv";
 		
 		
 		CaseBaseFilter WSF = new WeightsSeperatorFilter(null);
-		CaseBaseFilter standardize = new Standardization(WSF);
-		//CaseBaseFilter smote = new UnderSampling(standardize);
+		//CaseBaseFilter standardize = new Standardization(WSF);
+		CaseBaseFilter smote = new UnderSampling(WSF);
 		//CaseBaseFilter sample = new Sampling(standardize);
 		PerformanceTest pt = new PerformanceTest();
-		pt.PerformanceEvaluatorMethod(filenames, standardize, output_filename,"weightedKNN","kordered_r", null);
+		pt.PerformanceEvaluatorMethod(filenames, smote, output_filename,"weightedKNN","kordered_r", null);
 	}
 	
 	/**
