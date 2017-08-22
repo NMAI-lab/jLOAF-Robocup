@@ -15,6 +15,8 @@ import org.jLOAF.casebase.CaseBase;
 import org.jLOAF.inputs.AtomicInput;
 import org.jLOAF.inputs.ComplexInput;
 import org.jLOAF.inputs.Feature;
+import org.jLOAF.sim.AtomicSimilarityMetricStrategy;
+import org.jLOAF.sim.ComplexSimilarityMetricStrategy;
 import org.jLOAF.sim.SimilarityMetricStrategy;
 import org.jLOAF.sim.StateBasedSimilarity;
 import org.jLOAF.sim.StateBased.KOrderedSimilarity;
@@ -177,17 +179,17 @@ public class LogFile2CaseBase {
 		
 		//similarityMetrics
 		//atomic
-		SimilarityMetricStrategy Atomic_strat = new EuclideanDistance();
+		AtomicSimilarityMetricStrategy Atomic_strat = new EuclideanDistance();
 		//complex
-		SimilarityMetricStrategy ballGoal_strat = new Mean();
-		SimilarityMetricStrategy flag_strat = new GreedyMunkrezMatching();
+		ComplexSimilarityMetricStrategy ballGoal_strat = new Mean();
+		ComplexSimilarityMetricStrategy flag_strat = new GreedyMunkrezMatching();
 		//reactive
-		StateBasedSimilarity stateBasedSim = new KOrderedSimilarity(5);
+		StateBasedSimilarity stateBasedSim = new KOrderedSimilarity(1);
 		
 		//weights
 		SimilarityWeights sim_weights = new SimilarityWeights(); 
 		
-		SimilarityMetricStrategy RoboCup_strat = new WeightedMean(sim_weights);
+		ComplexSimilarityMetricStrategy RoboCup_strat = new WeightedMean(sim_weights);
 	
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(logfile),'r');
