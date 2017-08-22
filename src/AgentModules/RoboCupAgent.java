@@ -34,14 +34,6 @@ public class RoboCupAgent extends Agent {
 	public RoboCupAction run(Input input) {
 		return (RoboCupAction) this.r.selectAction(input);
 	}
-
-	@Override
-	public void train(CaseBase casebase) {
-		this.cb = casebase;
-		//this.r = new WeightedKNN(5, casebase);
-		//this.r = new TBReasoning(casebase);
-		//this.r = new NeuralNetworkReasoner(casebase, filename);
-	}
 	
 	
 
