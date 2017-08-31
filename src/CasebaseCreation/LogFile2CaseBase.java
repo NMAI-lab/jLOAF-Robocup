@@ -15,6 +15,8 @@ import org.jLOAF.casebase.CaseBase;
 import org.jLOAF.inputs.AtomicInput;
 import org.jLOAF.inputs.ComplexInput;
 import org.jLOAF.inputs.Feature;
+import org.jLOAF.sim.AtomicSimilarityMetricStrategy;
+import org.jLOAF.sim.ComplexSimilarityMetricStrategy;
 import org.jLOAF.sim.SimilarityMetricStrategy;
 import org.jLOAF.sim.StateBasedSimilarity;
 import org.jLOAF.sim.StateBased.KOrderedSimilarity;
@@ -178,17 +180,17 @@ public class LogFile2CaseBase {
 		
 		//similarityMetrics
 		//atomic
-		SimilarityMetricStrategy Atomic_strat = new EuclideanDistance();
+		AtomicSimilarityMetricStrategy Atomic_strat = new EuclideanDistance();
 		//complex
-		SimilarityMetricStrategy ballGoal_strat = new Mean();
-		SimilarityMetricStrategy flag_strat = new GreedyMunkrezMatching();
+		ComplexSimilarityMetricStrategy ballGoal_strat = new Mean();
+		ComplexSimilarityMetricStrategy flag_strat = new GreedyMunkrezMatching();
 		//reactive
 		StateBasedSimilarity stateBasedSim = new KOrderedSimilarity(5);
 		
 		//weights
 		SimilarityWeights sim_weights = new SimilarityWeights(); 
 		
-		SimilarityMetricStrategy RoboCup_strat = new WeightedMean(sim_weights);
+		ComplexSimilarityMetricStrategy RoboCup_strat = new WeightedMean(sim_weights);
 	
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(logfile),'r');
@@ -254,14 +256,16 @@ public class LogFile2CaseBase {
 						Feature goalDist = new Feature(Double.parseDouble(m.group(2))); 
 						Feature goalAngle = new Feature(Double.parseDouble(m.group(3)));
 						ginput1.add(new AtomicInput("goal_dist", goalDist, Atomic_strat));
-						ginput1.add(new AtomicInput("goal_dir", goalAngle, Atomic_strat));
+						//ginput1.add(new AtomicInput("goal_dir", goalAngle, Atomic_strat));
+						
+						double direction = convertCtsDir2Discrete(Double.parseDouble(m.group(3)));
 						
 						if(m.group(1).replace(")", "").equals("r")){
-							ginput1.add(new AtomicInput("goal_seenR",new Feature(1.0), Atomic_strat));
+							ginput1.add(new AtomicInput("goal_seenR",new Feature(direction), Atomic_strat));
 							ginput2.add(new AtomicInput("goal_seenL",new Feature(0.0), Atomic_strat));
 						}else{
 							ginput1.add(new AtomicInput("goal_seenR",new Feature(0.0), Atomic_strat));
-							ginput2.add(new AtomicInput("goal_seenL",new Feature(1.0), Atomic_strat));
+							ginput2.add(new AtomicInput("goal_seenL",new Feature(direction), Atomic_strat));
 						}
 						//add to input
 						input.add(ginput1);	
@@ -283,8 +287,10 @@ public class LogFile2CaseBase {
 						Feature ballDist = new Feature(Double.parseDouble(m.group(1))); 
 						Feature ballAngle = new Feature(Double.parseDouble(m.group(2)));
 						binput.add(new AtomicInput("ball_dist", ballDist, Atomic_strat));
-						binput.add(new AtomicInput("ball_dir", ballAngle, Atomic_strat));
-						binput.add(new AtomicInput("ball_seen",new Feature(1.0),Atomic_strat));
+						//binput.add(new AtomicInput("ball_dir", ballAngle, Atomic_strat));
+						
+						double direction = convertCtsDir2Discrete(Double.parseDouble(m.group(2)));
+						binput.add(new AtomicInput("ball_seen",new Feature(direction),Atomic_strat));
 						
 						//add to input
 						input.add(binput);	
@@ -303,8 +309,9 @@ public class LogFile2CaseBase {
 						Feature ballDist = new Feature(Double.parseDouble(m.group(1))); 
 						Feature ballAngle = new Feature(Double.parseDouble(m.group(2)));
 						binput.add(new AtomicInput("ball_dist", ballDist, Atomic_strat));
-						binput.add(new AtomicInput("ball_dir", ballAngle, Atomic_strat));
-						binput.add(new AtomicInput("ball_seen",new Feature(1.0),Atomic_strat));
+						//binput.add(new AtomicInput("ball_dir", ballAngle, Atomic_strat));
+						double direction = convertCtsDir2Discrete(Double.parseDouble(m.group(2)));
+						binput.add(new AtomicInput("ball_seen",new Feature(direction),Atomic_strat));
 						//add to input
 						input.add(binput);	
 					}
@@ -358,6 +365,22 @@ public class LogFile2CaseBase {
 			System.out.println(e.toString());
 		}
 		
+	}
+	
+	/**
+	 * This function converts the cts direction into a discrete double value
+	 * 
+	 * @param direction: double
+	 * @return Discrete representation of position
+	 * **/
+	private double convertCtsDir2Discrete(double dir){
+		if (dir>-45 && dir<-30){
+			return 1.0;
+		}else if (dir>-30 && dir<30){
+			return 2.0;
+		}else{
+			return 3.0;
+		}
 	}
 	
 	

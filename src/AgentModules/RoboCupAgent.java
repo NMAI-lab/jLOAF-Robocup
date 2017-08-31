@@ -1,6 +1,6 @@
 package AgentModules;
 import org.jLOAF.Agent;
-
+import org.jLOAF.Reasoning;
 import org.jLOAF.casebase.CaseBase;
 
 import org.jLOAF.inputs.Input;
@@ -34,24 +34,6 @@ public class RoboCupAgent extends Agent {
 	public RoboCupAction run(Input input) {
 		return (RoboCupAction) this.r.selectAction(input);
 	}
-
-	@Override
-	public void train(CaseBase casebase) {
-		this.cb = casebase;
-		if(r==null){
-			this.r = new DynamicBayesianReasoner(casebase, filename);
-		}
-		if(this.r instanceof DynamicBayesianReasoner){
-			((DynamicBayesianReasoner) r).setTrain();
-		}
-		if(this.r instanceof BayesianReasoner){
-			((BayesianReasoner) r).setTrain();
-		}
-		//this.r = new WeightedKNN(5, casebase);
-		//this.r = new TBReasoning(casebase);
-		//this.r = new NeuralNetworkReasoner(casebase, filename);
-	}
-	
 	
 
 }
