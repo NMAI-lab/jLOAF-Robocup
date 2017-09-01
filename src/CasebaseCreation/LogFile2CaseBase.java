@@ -374,9 +374,9 @@ public class LogFile2CaseBase {
 	 * @return Discrete representation of position
 	 * **/
 	private double convertCtsDir2Discrete(double dir){
-		if (dir>-45 && dir<-30){
+		if (dir>-45 && dir<-15){
 			return 1.0;
-		}else if (dir>-30 && dir<30){
+		}else if (dir>-15 && dir<15){
 			return 2.0;
 		}else{
 			return 3.0;
