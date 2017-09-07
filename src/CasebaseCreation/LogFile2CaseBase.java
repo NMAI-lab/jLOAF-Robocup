@@ -370,16 +370,36 @@ public class LogFile2CaseBase {
 	/**
 	 * This function converts the cts direction into a discrete double value
 	 * 
+	 * The dir can range from -180 to 180, the direction is discretized into 30 degrees increments.
+	 * 
 	 * @param direction: double
 	 * @return Discrete representation of position
 	 * **/
 	private double convertCtsDir2Discrete(double dir){
-		if (dir>-45 && dir<-15){
+		if (dir>-180 && dir<-150){
 			return 1.0;
-		}else if (dir>-15 && dir<15){
+		}else if (dir>=-150 && dir<-120){
 			return 2.0;
-		}else{
+		}else if (dir>=-120 && dir<-90){
 			return 3.0;
+		}else if (dir>=-90 && dir<-60){
+			return 4.0;
+		}else if (dir>=-60 && dir<-30){
+			return 5.0;
+		}else if (dir>=-30 && dir<0){
+			return 6.0;
+		}else if (dir>=0 && dir<30){
+			return 7.0;
+		}else if (dir>=30 && dir<60){
+			return 8.0;
+		}else if (dir>=60 && dir<90){
+			return 9.0;
+		}else if (dir>=90 && dir<120){
+			return 10.0;
+		}else if (dir>=120 && dir<150){
+			return 11.0;
+		}else{
+			return 12.0;
 		}
 	}
 	
