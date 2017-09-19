@@ -42,7 +42,7 @@ public class PerformanceTest extends PerformanceEvaluator {
 	 * ***/
 	public static void main(String a[]) throws IOException{
 		String [] filenames = {"Data/Carleton_1.lsf","Data/Carleton_2.lsf"};
-		String output_filename = "Results/KrisletEvenDir,bayesian,wsf,standardize,none,none,.csv";
+		String output_filename = "Results/KrisletDir180,weightedKNN,wsf,standardize,kordered,none,.csv";
 		
 		
 		CaseBaseFilter WSF = new WeightsSeperatorFilter(null);
@@ -50,7 +50,7 @@ public class PerformanceTest extends PerformanceEvaluator {
 		//CaseBaseFilter smote = new UnderSampling(standardize);
 		//CaseBaseFilter sample = new Sampling(standardize);
 		PerformanceTest pt = new PerformanceTest();
-		pt.PerformanceEvaluatorMethod(filenames, standardize, output_filename,"bayesian",null, null);
+		pt.PerformanceEvaluatorMethod(filenames, standardize, output_filename,"weightedKNN","kordered", null);
 	}
 	
 	/**
