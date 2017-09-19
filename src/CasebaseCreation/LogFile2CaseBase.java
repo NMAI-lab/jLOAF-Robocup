@@ -256,9 +256,10 @@ public class LogFile2CaseBase {
 						Feature goalDist = new Feature(Double.parseDouble(m.group(2))); 
 						Feature goalAngle = new Feature(Double.parseDouble(m.group(3)));
 						ginput1.add(new AtomicInput("goal_dist", goalDist, Atomic_strat));
-						//ginput1.add(new AtomicInput("goal_dir", goalAngle, Atomic_strat));
+						ginput1.add(new AtomicInput("goal_dir", goalAngle, Atomic_strat));
 						
-						double direction = convertCtsDir2Discrete(Double.parseDouble(m.group(3)));
+						//double direction = convertCtsDir2Discrete(Double.parseDouble(m.group(3)));
+						double direction = 1.0;
 						
 						if(m.group(1).replace(")", "").equals("r")){
 							ginput1.add(new AtomicInput("goal_seenR",new Feature(direction), Atomic_strat));
@@ -287,9 +288,10 @@ public class LogFile2CaseBase {
 						Feature ballDist = new Feature(Double.parseDouble(m.group(1))); 
 						Feature ballAngle = new Feature(Double.parseDouble(m.group(2)));
 						binput.add(new AtomicInput("ball_dist", ballDist, Atomic_strat));
-						//binput.add(new AtomicInput("ball_dir", ballAngle, Atomic_strat));
+						binput.add(new AtomicInput("ball_dir", ballAngle, Atomic_strat));
 						
-						double direction = convertCtsDir2Discrete(Double.parseDouble(m.group(2)));
+						//double direction = convertCtsDir2Discrete(Double.parseDouble(m.group(2)));
+						double direction = 1.0;
 						binput.add(new AtomicInput("ball_seen",new Feature(direction),Atomic_strat));
 						
 						//add to input
@@ -309,8 +311,9 @@ public class LogFile2CaseBase {
 						Feature ballDist = new Feature(Double.parseDouble(m.group(1))); 
 						Feature ballAngle = new Feature(Double.parseDouble(m.group(2)));
 						binput.add(new AtomicInput("ball_dist", ballDist, Atomic_strat));
-						//binput.add(new AtomicInput("ball_dir", ballAngle, Atomic_strat));
-						double direction = convertCtsDir2Discrete(Double.parseDouble(m.group(2)));
+						binput.add(new AtomicInput("ball_dir", ballAngle, Atomic_strat));
+						//double direction = convertCtsDir2Discrete(Double.parseDouble(m.group(2)));
+						double direction = 1.0;
 						binput.add(new AtomicInput("ball_seen",new Feature(direction),Atomic_strat));
 						//add to input
 						input.add(binput);	
