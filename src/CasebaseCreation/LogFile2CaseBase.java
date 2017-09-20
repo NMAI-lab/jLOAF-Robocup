@@ -245,18 +245,23 @@ public class LogFile2CaseBase {
 					//check goalDistance and goalAngle
 					m = gp.matcher(Line);
 					if(m.find()){
+						Feature goalDist = new Feature(Double.parseDouble(m.group(2))); 
+						Feature goalAngle = new Feature(Double.parseDouble(m.group(3)));
+						
 						if(m.group(1).replace(")", "").equals("r")){
 							ginput2 = new ComplexInput("goal l", ballGoal_strat);
 							ginput1 = new ComplexInput("goal r", ballGoal_strat);
+							ginput1.add(new AtomicInput("goal_distR", goalDist, Atomic_strat));
+							ginput1.add(new AtomicInput("goal_dirR", goalAngle, Atomic_strat));
+							
 						}else{
 							ginput2 = new ComplexInput("goal r", ballGoal_strat);
 							ginput1 = new ComplexInput("goal l", ballGoal_strat);
+							ginput1.add(new AtomicInput("goal_distL", goalDist, Atomic_strat));
+							ginput1.add(new AtomicInput("goal_dirL", goalAngle, Atomic_strat));
 						}
 
-						Feature goalDist = new Feature(Double.parseDouble(m.group(2))); 
-						Feature goalAngle = new Feature(Double.parseDouble(m.group(3)));
-						ginput1.add(new AtomicInput("goal_dist", goalDist, Atomic_strat));
-						ginput1.add(new AtomicInput("goal_dir", goalAngle, Atomic_strat));
+						
 						
 						//double direction = convertCtsDir2Discrete(Double.parseDouble(m.group(3)));
 						double direction = 1.0;
