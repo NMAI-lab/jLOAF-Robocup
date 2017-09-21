@@ -42,15 +42,15 @@ public class PerformanceTest extends PerformanceEvaluator {
 	 * ***/
 	public static void main(String a[]) throws IOException{
 		String [] filenames = {"Data/Carleton_1.lsf","Data/Carleton_2.lsf"};
-		String output_filename = "Results/KrisletCtsAndDsc,bayesian,wsf,standardize,none,none,.csv";
+		String output_filename = "Results/KrisletCtsAndDscRUS,bayesian,wsf,standardize,none,none,.csv";
 		
 		
 		CaseBaseFilter WSF = new WeightsSeperatorFilter(null);
 		CaseBaseFilter standardize = new Standardization(WSF);
-		//CaseBaseFilter smote = new UnderSampling(standardize);
+		CaseBaseFilter smote = new UnderSampling(standardize);
 		//CaseBaseFilter sample = new Sampling(standardize);
 		PerformanceTest pt = new PerformanceTest();
-		pt.PerformanceEvaluatorMethod(filenames, standardize, output_filename,"bayesian",null, null);
+		pt.PerformanceEvaluatorMethod(filenames, smote, output_filename,"bayesian",null, null);
 	}
 	
 	/**
