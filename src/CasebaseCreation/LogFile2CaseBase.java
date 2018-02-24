@@ -246,7 +246,7 @@ public class LogFile2CaseBase {
 					m = gp.matcher(Line);
 					if(m.find()){
 						Feature goalDist = new Feature(Double.parseDouble(m.group(2))); 
-						Feature goalAngle = new Feature(Double.parseDouble(m.group(3)));
+						Feature goalAngle = new Feature((Double.parseDouble(m.group(3))));
 						
 						if(m.group(1).replace(")", "").equals("r")){
 							ginput2 = new ComplexInput("goal l", ballGoal_strat);
@@ -264,13 +264,13 @@ public class LogFile2CaseBase {
 						
 						
 						//double direction = convertCtsDir2Discrete(Double.parseDouble(m.group(3)));
-						double direction = 1.0;
+						double direction = 2.0;
 						
 						if(m.group(1).replace(")", "").equals("r")){
 							ginput1.add(new AtomicInput("goal_seenR",new Feature(direction), Atomic_strat));
-							ginput2.add(new AtomicInput("goal_seenL",new Feature(0.0), Atomic_strat));
+							ginput2.add(new AtomicInput("goal_seenL",new Feature(1.0), Atomic_strat));
 						}else{
-							ginput1.add(new AtomicInput("goal_seenR",new Feature(0.0), Atomic_strat));
+							ginput1.add(new AtomicInput("goal_seenR",new Feature(1.0), Atomic_strat));
 							ginput2.add(new AtomicInput("goal_seenL",new Feature(direction), Atomic_strat));
 						}
 						//add to input
@@ -279,8 +279,8 @@ public class LogFile2CaseBase {
 					}else{
 						ginput1 = new ComplexInput("goal r", ballGoal_strat);
 						ginput2 = new ComplexInput("goal l", ballGoal_strat);
-						ginput1.add(new AtomicInput("goal_seenR",new Feature(0.0), Atomic_strat));
-						ginput2.add(new AtomicInput("goal_seenL",new Feature(0.0), Atomic_strat));
+						ginput1.add(new AtomicInput("goal_seenR",new Feature(1.0), Atomic_strat));
+						ginput2.add(new AtomicInput("goal_seenL",new Feature(1.0), Atomic_strat));
 						input.add(ginput1);	
 						input.add(ginput2);
 					}
@@ -291,19 +291,19 @@ public class LogFile2CaseBase {
 						//System.out.println(m.group(1));
 						//System.out.println(m.group(2));
 						Feature ballDist = new Feature(Double.parseDouble(m.group(1))); 
-						Feature ballAngle = new Feature(Double.parseDouble(m.group(2)));
+						Feature ballAngle = new Feature((Double.parseDouble(m.group(2))));
 						binput.add(new AtomicInput("ball_dist", ballDist, Atomic_strat));
 						binput.add(new AtomicInput("ball_dir", ballAngle, Atomic_strat));
 						
 						//double direction = convertCtsDir2Discrete(Double.parseDouble(m.group(2)));
-						double direction = 1.0;
+						double direction = 2.0;
 						binput.add(new AtomicInput("ball_seen",new Feature(direction),Atomic_strat));
 						
 						//add to input
 						input.add(binput);	
 					}else{
 						binput = new ComplexInput("ball",ballGoal_strat);
-						binput.add(new AtomicInput("ball_seen",new Feature(0.0),Atomic_strat));
+						binput.add(new AtomicInput("ball_seen",new Feature(1.0),Atomic_strat));
 						input.add(binput);	
 					}
 					
@@ -314,11 +314,11 @@ public class LogFile2CaseBase {
 						//System.out.println(m.group(1));
 						//System.out.println(m.group(2));
 						Feature ballDist = new Feature(Double.parseDouble(m.group(1))); 
-						Feature ballAngle = new Feature(Double.parseDouble(m.group(2)));
+						Feature ballAngle = new Feature((Double.parseDouble(m.group(2))));
 						binput.add(new AtomicInput("ball_dist", ballDist, Atomic_strat));
 						binput.add(new AtomicInput("ball_dir", ballAngle, Atomic_strat));
 						//double direction = convertCtsDir2Discrete(Double.parseDouble(m.group(2)));
-						double direction = 1.0;
+						double direction = 2.0;
 						binput.add(new AtomicInput("ball_seen",new Feature(direction),Atomic_strat));
 						//add to input
 						input.add(binput);	

@@ -1,0 +1,16 @@
+Performance Measure,Mean,Standard Deviation
+F1_turn,0.34660688,0.019683808
+F1_kick,0.6142049,0.07072663
+Classification_Accuracy,0.5181134,0.015823305
+Global_F1,0.52491003,0.025457531
+Recall_kick,0.6944444,0.1388889
+Precision_dash,0.7890421,0.04247302
+Recall_dash,0.5072077,0.05169639
+Precision_kick,0.6480415,0.24481568
+Recall_turn,0.5499841,0.093372524
+F1_dash,0.6139183,0.025329709
+Precision_turn,0.255319,7.10696E-4
+
+,Cycle0,Cycle1
+Filter Time (Seconds),0.133,0.049,
+Test Time (Minutes),5.340716666666666,3.1639833333333334,
