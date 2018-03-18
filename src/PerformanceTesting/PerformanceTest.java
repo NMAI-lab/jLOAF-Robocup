@@ -42,8 +42,8 @@ public class PerformanceTest extends PerformanceEvaluator {
 	 * ***/
 	public static void main(String a[]) throws IOException{
 		String [] filenames = {"Data/Carleton_1.lsf","Data/Carleton_2.lsf","Data/Carleton_3.lsf","Data/Carleton_4.lsf","Data/Carleton_5.lsf","Data/University_1.lsf","Data/University_2.lsf","Data/University_3.lsf","Data/University_4.lsf","Data/University_5.lsf"};
-		//String [] filenames = {"Data/Carleton_1.lsf","Data/Carleton_2.lsf"};
-		String output_filename = "Results/ModelGaussianWdisc,bayesian,standardize,none,none,none,.csv";
+		//String [] filenames = {"Data/small_1.lsf","Data/small_2.lsf"};
+		String output_filename = "FinalResults/PGM,bayesian,standardization,none,none,none,.csv";
 		
 		CaseBaseFilter WSF = new WeightsSeperatorFilter(null);
 		CaseBaseFilter standardize = new Standardization(WSF);

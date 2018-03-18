@@ -1,0 +1,12 @@
+Performance Measure,Cycle0
+F1_turn,0.3437222
+F1_kick,0.70212764
+Classification_Accuracy,0.80660254
+Global_F1,0.64474136
+Recall_kick,0.73333335
+Precision_dash,0.7991667
+Recall_dash,1.0
+Precision_kick,0.67346936
+Recall_turn,0.20864865
+F1_dash,0.88837427
+Precision_turn,0.9747475
