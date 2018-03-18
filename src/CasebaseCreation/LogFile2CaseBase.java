@@ -270,8 +270,8 @@ public class LogFile2CaseBase {
 							ginput1.add(new AtomicInput("goal_seenR",new Feature(direction), Atomic_strat));
 							ginput2.add(new AtomicInput("goal_seenL",new Feature(1.0), Atomic_strat));
 						}else{
-							ginput1.add(new AtomicInput("goal_seenR",new Feature(1.0), Atomic_strat));
-							ginput2.add(new AtomicInput("goal_seenL",new Feature(direction), Atomic_strat));
+							ginput2.add(new AtomicInput("goal_seenR",new Feature(1.0), Atomic_strat));
+							ginput1.add(new AtomicInput("goal_seenL",new Feature(direction), Atomic_strat));
 						}
 						//add to input
 						input.add(ginput1);	
