@@ -41,16 +41,16 @@ public class PerformanceTest extends PerformanceEvaluator {
 	 *  
 	 * ***/
 	public static void main(String a[]) throws IOException{
-		String [] filenames = {"Data/Carleton_1.lsf","Data/Carleton_2.lsf","Data/Carleton_3.lsf","Data/Carleton_4.lsf","Data/Carleton_5.lsf","Data/University_1.lsf","Data/University_2.lsf","Data/University_3.lsf","Data/University_4.lsf","Data/University_5.lsf"};
+		String [] filenames = {"Data/Carleton_1.lsf","Data/Carleton_2.lsf","Data/Carleton_3.lsf","Data/Carleton_4.lsf","Data/Carleton_5.lsf"}; //"Data/University_1.lsf","Data/University_2.lsf","Data/University_3.lsf","Data/University_4.lsf","Data/University_5.lsf"};
 		//String [] filenames = {"Data/small_1.lsf","Data/small_2.lsf"};
-		String output_filename = "FinalResults/PGM,bayesian,standardization,none,none,none,.csv";
+		String output_filename = "FinalResults/PGM,bayesian,none,none,none,none,.csv";
 		
 		CaseBaseFilter WSF = new WeightsSeperatorFilter(null);
-		CaseBaseFilter standardize = new Standardization(WSF);
+		 //CaseBaseFilter standardize = new Standardization(WSF);
 		//CaseBaseFilter smote = new UnderSampling(standardize);
 		//CaseBaseFilter sample = new Sampling(standardize);
 		PerformanceTest pt = new PerformanceTest();
-		pt.PerformanceEvaluatorMethod(filenames, standardize, output_filename,"bayesian",null, null);
+		pt.PerformanceEvaluatorMethod(filenames, WSF, output_filename,"bayesian",null, null);
 	}
 	
 	/**
