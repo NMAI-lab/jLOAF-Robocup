@@ -174,7 +174,7 @@ public class LogFile2CaseBase {
 		//booleans
 		boolean hasAction = false;
 		boolean hasInput = false;
-		boolean want_flags = true;
+		boolean want_flags = false;
 		//casebase
 		CaseBase cb = new CaseBase();
 		
