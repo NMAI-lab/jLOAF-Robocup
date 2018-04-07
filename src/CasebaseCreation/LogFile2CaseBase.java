@@ -30,6 +30,7 @@ import org.jLOAF.weights.Weights;
 
 import AgentModules.RoboCupAction;
 import AgentModules.RoboCupInput;
+import PerformanceTesting.PerformanceTest;
 /**
  * @author sacha gunaratne 
  * @since 2017 may
@@ -410,6 +411,23 @@ public class LogFile2CaseBase {
 			return 12.0;
 		}
 	}
+	
+	public static void main(String [] args) throws IOException{
+		String [] filenames = {"Data/Carleton_1.lsf","Data/Carleton_2.lsf","Data/Carleton_3.lsf","Data/Carleton_4.lsf","Data/Carleton_5.lsf"};
+		PerformanceTest pt = new PerformanceTest();
+		ArrayList<CaseBase> listOfCaseBases=new ArrayList<CaseBase>();
+		String[]cbname = pt.createArrayOfCasebaseNames(filenames);
+		
+		CaseBase cb = new CaseBase();
+		
+		for(String s: cbname){
+			listOfCaseBases.add(CaseBase.load(s));
+		}		
+		cb.addListOfCaseBases(listOfCaseBases);
+		
+		CaseBase.save(cb,"CarletonIndicator.cb");	
+	}
+	
 	
 	
 }
