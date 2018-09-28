@@ -82,7 +82,7 @@ public class PerformanceTest extends PerformanceEvaluator {
 				"DataBaseline/ClassicKrislet/Game 10/University_5.lsf"};
 		
 		// Finite Turn Krislet log files
-		/*String [] filenames = {"DataBaseline/FiniteTurnKrislet/Game 1/Carleton_1.lsf", "DataBaseline/FiniteTurnKrislet/Game 1/Carleton_2.lsf", "DataBaseline/FiniteTurnKrislet/Game 1/Carleton_3.lsf",
+/*		String [] filenames = {"DataBaseline/FiniteTurnKrislet/Game 1/Carleton_1.lsf", "DataBaseline/FiniteTurnKrislet/Game 1/Carleton_2.lsf", "DataBaseline/FiniteTurnKrislet/Game 1/Carleton_3.lsf",
 				"DataBaseline/FiniteTurnKrislet/Game 1/Carleton_4.lsf", "DataBaseline/FiniteTurnKrislet/Game 1/Carleton_5.lsf", "DataBaseline/FiniteTurnKrislet/Game 1/University_1.lsf",
 				"DataBaseline/FiniteTurnKrislet/Game 1/University_2.lsf","DataBaseline/FiniteTurnKrislet/Game 1/University_3.lsf", "DataBaseline/FiniteTurnKrislet/Game 1/University_4.lsf",
 				"DataBaseline/FiniteTurnKrislet/Game 1/University_5.lsf", "DataBaseline/FiniteTurnKrislet/Game 2/Carleton_1.lsf", "DataBaseline/FiniteTurnKrislet/Game 2/Carleton_2.lsf",
@@ -115,10 +115,10 @@ public class PerformanceTest extends PerformanceEvaluator {
 				"DataBaseline/FiniteTurnKrislet/Game 10/Carleton_1.lsf", "DataBaseline/FiniteTurnKrislet/Game 10/Carleton_2.lsf", "DataBaseline/FiniteTurnKrislet/Game 10/Carleton_3.lsf",
 				"DataBaseline/FiniteTurnKrislet/Game 10/Carleton_4.lsf", "DataBaseline/FiniteTurnKrislet/Game 10/Carleton_5.lsf", "DataBaseline/FiniteTurnKrislet/Game 10/University_1.lsf",
 				"DataBaseline/FiniteTurnKrislet/Game 10/University_2.lsf", "DataBaseline/FiniteTurnKrislet/Game 10/University_3.lsf", "DataBaseline/FiniteTurnKrislet/Game 10/University_4.lsf",
-				"DataBaseline/FiniteTurnKrislet/Game 10/University_5.lsf"};*/
+				"DataBaseline/FiniteTurnKrislet/Game 10/University_5.lsf"};
 		
 		// State Based Krislet log files
-		/*String [] filenames = {"DataBaseline/StateBasedKrislet/Game 1/Carleton_1.lsf", "DataBaseline/StateBasedKrislet/Game 1/Carleton_2.lsf", "DataBaseline/StateBasedKrislet/Game 1/Carleton_3.lsf",
+		String [] filenames = {"DataBaseline/StateBasedKrislet/Game 1/Carleton_1.lsf", "DataBaseline/StateBasedKrislet/Game 1/Carleton_2.lsf", "DataBaseline/StateBasedKrislet/Game 1/Carleton_3.lsf",
 				"DataBaseline/StateBasedKrislet/Game 1/Carleton_4.lsf", "DataBaseline/StateBasedKrislet/Game 1/Carleton_5.lsf", "DataBaseline/StateBasedKrislet/Game 1/University_1.lsf",
 				"DataBaseline/StateBasedKrislet/Game 1/University_2.lsf","DataBaseline/StateBasedKrislet/Game 1/University_3.lsf", "DataBaseline/StateBasedKrislet/Game 1/University_4.lsf",
 				"DataBaseline/StateBasedKrislet/Game 1/University_5.lsf", "DataBaseline/StateBasedKrislet/Game 2/Carleton_1.lsf", "DataBaseline/StateBasedKrislet/Game 2/Carleton_2.lsf",
@@ -151,8 +151,8 @@ public class PerformanceTest extends PerformanceEvaluator {
 				"DataBaseline/StateBasedKrislet/Game 10/Carleton_1.lsf", "DataBaseline/StateBasedKrislet/Game 10/Carleton_2.lsf", "DataBaseline/StateBasedKrislet/Game 10/Carleton_3.lsf",
 				"DataBaseline/StateBasedKrislet/Game 10/Carleton_4.lsf", "DataBaseline/StateBasedKrislet/Game 10/Carleton_5.lsf", "DataBaseline/StateBasedKrislet/Game 10/University_1.lsf",
 				"DataBaseline/StateBasedKrislet/Game 10/University_2.lsf", "DataBaseline/StateBasedKrislet/Game 10/University_3.lsf", "DataBaseline/StateBasedKrislet/Game 10/University_4.lsf",
-				"DataBaseline/StateBasedKrislet/Game 10/University_5.lsf"};*/
-		
+				"DataBaseline/StateBasedKrislet/Game 10/University_5.lsf"};
+*/		
 
 		CaseBaseFilter WSF = new WeightsSeperatorFilter(null);
 		CaseBaseFilter standardize = new Standardization(WSF);
