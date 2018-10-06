@@ -167,12 +167,12 @@ public class PerformanceTest extends PerformanceEvaluator {
 //		pt.PerformanceEvaluatorMethod(filenames, standardize, output_filename,"TB",null, null);
 		
 		// CBR kordered (state based) test
-//		output_filename = "BaselineResults/CBR,weightedKnn,standardize,none,kordered,none,.csv";
-//		pt.PerformanceEvaluatorMethod(filenames, standardize, output_filename,"weightedKNN","kordered", null);
+		output_filename = "BaselineResults/CBR,weightedKnn,standardize,none,kordered,none,.csv";
+		pt.PerformanceEvaluatorMethod(filenames, standardize, output_filename,"weightedKNN","kordered", null);
 		
 		// CBR kunordered (state based) test
-		output_filename = "BaselineResults/CBR,weightedKnn,standardize,none,kunordered,none,.csv";
-		pt.PerformanceEvaluatorMethod(filenames, standardize, output_filename,"weightedKNN","kunordered", null);
+//		output_filename = "BaselineResults/CBR,weightedKnn,standardize,none,kunordered,none,.csv";
+//		pt.PerformanceEvaluatorMethod(filenames, standardize, output_filename,"weightedKNN","kunordered", null);
 		
 		// CBR kordered_r (reactive) test
 //		output_filename = "BaselineResults/CBR,weightedKnn,standardize,none,kordered_r,none,.csv";
