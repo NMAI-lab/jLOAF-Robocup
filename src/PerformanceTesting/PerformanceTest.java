@@ -82,7 +82,7 @@ public class PerformanceTest extends PerformanceEvaluator {
 				"DataBaseline/ClassicKrislet/Game 10/University_5.lsf"};
 */		
 		// Finite Turn Krislet log files
-		String [] filenames = {"DataBaseline/FiniteTurnKrislet/Game 1/Carleton_1.lsf", "DataBaseline/FiniteTurnKrislet/Game 1/Carleton_2.lsf", "DataBaseline/FiniteTurnKrislet/Game 1/Carleton_3.lsf",
+		String [] filenames = {"DataBaseline/FiniteTurnKrislet/Game 1/Carleton_1.lsf", "DataBaseline/FiniteTurnKrislet/Game 1/Carleton_2.lsf"};/*, "DataBaseline/FiniteTurnKrislet/Game 1/Carleton_3.lsf",
 				"DataBaseline/FiniteTurnKrislet/Game 1/Carleton_4.lsf", "DataBaseline/FiniteTurnKrislet/Game 1/Carleton_5.lsf", "DataBaseline/FiniteTurnKrislet/Game 1/University_1.lsf",
 				"DataBaseline/FiniteTurnKrislet/Game 1/University_2.lsf","DataBaseline/FiniteTurnKrislet/Game 1/University_3.lsf", "DataBaseline/FiniteTurnKrislet/Game 1/University_4.lsf",
 				"DataBaseline/FiniteTurnKrislet/Game 1/University_5.lsf"};/*, "DataBaseline/FiniteTurnKrislet/Game 2/Carleton_1.lsf", "DataBaseline/FiniteTurnKrislet/Game 2/Carleton_2.lsf",
