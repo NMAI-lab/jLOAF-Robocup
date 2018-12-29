@@ -207,10 +207,22 @@ public class LogFile2CaseBase {
 						//check turnAngle
 						m = tp.matcher(Line);
 						if(m.find()){
+							double turnAngleValue = Double.parseDouble(m.group(1));
+							if (turnAngleValue > 0) {
+								//System.out.println(m.group(1));
+								AtomicAction turnAnglePositive = new AtomicAction("turnAnglePositive");
+								turnAnglePositive.setFeature(new Feature(Double.parseDouble(m.group(1))));
+								action.add(turnAnglePositive);
+							} else {
+								//System.out.println(m.group(1));
+								AtomicAction turnAngleNegative = new AtomicAction("turnAngleNegative");
+								turnAngleNegative.setFeature(new Feature(Double.parseDouble(m.group(1))));
+								action.add(turnAngleNegative);
+							}
 							//System.out.println(m.group(1));
-							AtomicAction turnAngle = new AtomicAction("turnAngle");
-							turnAngle.setFeature(new Feature(Double.parseDouble(m.group(1))));
-							action.add(turnAngle);
+							//AtomicAction turnAngle = new AtomicAction("turnAngle");
+							//turnAngle.setFeature(new Feature(Double.parseDouble(m.group(1))));
+							//action.add(turnAngle);
 						}	
 					}else if (m.group(1).equals("dash")){
 						//check dashPower
