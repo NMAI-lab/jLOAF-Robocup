@@ -80,9 +80,9 @@ public class PerformanceTest extends PerformanceEvaluator {
 				"DataBaseline/ClassicKrislet/Game 10/Carleton_4.lsf", "DataBaseline/ClassicKrislet/Game 10/Carleton_5.lsf", "DataBaseline/ClassicKrislet/Game 10/University_1.lsf",
 				"DataBaseline/ClassicKrislet/Game 10/University_2.lsf", "DataBaseline/ClassicKrislet/Game 10/University_3.lsf", "DataBaseline/ClassicKrislet/Game 10/University_4.lsf",
 				"DataBaseline/ClassicKrislet/Game 10/University_5.lsf"};
-*/		
+	*/	
 		// Finite Turn Krislet log files
-		String [] filenames = {"DataBaseline/FiniteTurnKrislet/Game 1/Carleton_1.lsf", "DataBaseline/FiniteTurnKrislet/Game 1/Carleton_2.lsf"};/*, "DataBaseline/FiniteTurnKrislet/Game 1/Carleton_3.lsf",
+		String [] filenames = {"DataBaseline/FiniteTurnKrislet/Game 1/Carleton_1.lsf", "DataBaseline/FiniteTurnKrislet/Game 1/Carleton_2.lsf", "DataBaseline/FiniteTurnKrislet/Game 1/Carleton_3.lsf",
 				"DataBaseline/FiniteTurnKrislet/Game 1/Carleton_4.lsf", "DataBaseline/FiniteTurnKrislet/Game 1/Carleton_5.lsf", "DataBaseline/FiniteTurnKrislet/Game 1/University_1.lsf",
 				"DataBaseline/FiniteTurnKrislet/Game 1/University_2.lsf","DataBaseline/FiniteTurnKrislet/Game 1/University_3.lsf", "DataBaseline/FiniteTurnKrislet/Game 1/University_4.lsf",
 				"DataBaseline/FiniteTurnKrislet/Game 1/University_5.lsf"};/*, "DataBaseline/FiniteTurnKrislet/Game 2/Carleton_1.lsf", "DataBaseline/FiniteTurnKrislet/Game 2/Carleton_2.lsf",
@@ -121,7 +121,7 @@ public class PerformanceTest extends PerformanceEvaluator {
 		String [] filenames = {"DataBaseline/StateBasedKickSpin/Game 1/Carleton_1.lsf", "DataBaseline/StateBasedKickSpin/Game 1/Carleton_2.lsf", "DataBaseline/StateBasedKickSpin/Game 1/Carleton_3.lsf",
 				"DataBaseline/StateBasedKickSpin/Game 1/Carleton_4.lsf", "DataBaseline/StateBasedKickSpin/Game 1/Carleton_5.lsf", "DataBaseline/StateBasedKickSpin/Game 1/University_1.lsf",
 				"DataBaseline/StateBasedKickSpin/Game 1/University_2.lsf","DataBaseline/StateBasedKickSpin/Game 1/University_3.lsf", "DataBaseline/StateBasedKickSpin/Game 1/University_4.lsf",
-				"DataBaseline/StateBasedKickSpin/Game 1/University_5.lsf", "DataBaseline/StateBasedKickSpin/Game 2/Carleton_1.lsf", "DataBaseline/StateBasedKickSpin/Game 2/Carleton_2.lsf",
+				"DataBaseline/StateBasedKickSpin/Game 1/University_5.lsf"};/*, "DataBaseline/StateBasedKickSpin/Game 2/Carleton_1.lsf", "DataBaseline/StateBasedKickSpin/Game 2/Carleton_2.lsf",
 				"DataBaseline/StateBasedKickSpin/Game 2/Carleton_3.lsf", "DataBaseline/StateBasedKickSpin/Game 2/Carleton_4.lsf", "DataBaseline/StateBasedKickSpin/Game 2/Carleton_5.lsf",
 				"DataBaseline/StateBasedKickSpin/Game 2/University_1.lsf", "DataBaseline/StateBasedKickSpin/Game 2/University_2.lsf", "DataBaseline/StateBasedKickSpin/Game 2/University_3.lsf",
 				"DataBaseline/StateBasedKickSpin/Game 2/University_4.lsf", "DataBaseline/StateBasedKickSpin/Game 2/University_5.lsf", "DataBaseline/StateBasedKickSpin/Game 3/Carleton_1.lsf",
@@ -157,7 +157,7 @@ public class PerformanceTest extends PerformanceEvaluator {
 		String [] filenames = {"DataBaseline/StateBasedTurnDirection/Game 1/Carleton_1.lsf", "DataBaseline/StateBasedTurnDirection/Game 1/Carleton_2.lsf", "DataBaseline/StateBasedTurnDirection/Game 1/Carleton_3.lsf",
 				"DataBaseline/StateBasedTurnDirection/Game 1/Carleton_4.lsf", "DataBaseline/StateBasedTurnDirection/Game 1/Carleton_5.lsf", "DataBaseline/StateBasedTurnDirection/Game 1/University_1.lsf",
 				"DataBaseline/StateBasedTurnDirection/Game 1/University_2.lsf","DataBaseline/StateBasedTurnDirection/Game 1/University_3.lsf", "DataBaseline/StateBasedTurnDirection/Game 1/University_4.lsf",
-				"DataBaseline/StateBasedTurnDirection/Game 1/University_5.lsf", "DataBaseline/StateBasedTurnDirection/Game 2/Carleton_1.lsf", "DataBaseline/StateBasedTurnDirection/Game 2/Carleton_2.lsf",
+				"DataBaseline/StateBasedTurnDirection/Game 1/University_5.lsf"};/*, "DataBaseline/StateBasedTurnDirection/Game 2/Carleton_1.lsf", "DataBaseline/StateBasedTurnDirection/Game 2/Carleton_2.lsf",
 				"DataBaseline/StateBasedTurnDirection/Game 2/Carleton_3.lsf", "DataBaseline/StateBasedTurnDirection/Game 2/Carleton_4.lsf", "DataBaseline/StateBasedTurnDirection/Game 2/Carleton_5.lsf",
 				"DataBaseline/StateBasedTurnDirection/Game 2/University_1.lsf", "DataBaseline/StateBasedTurnDirection/Game 2/University_2.lsf", "DataBaseline/StateBasedTurnDirection/Game 2/University_3.lsf",
 				"DataBaseline/StateBasedTurnDirection/Game 2/University_4.lsf", "DataBaseline/StateBasedTurnDirection/Game 2/University_5.lsf", "DataBaseline/StateBasedTurnDirection/Game 3/Carleton_1.lsf",
@@ -203,12 +203,12 @@ public class PerformanceTest extends PerformanceEvaluator {
 //		pt.PerformanceEvaluatorMethod(filenames, standardize, output_filename,"TB",null, null);
 		
 		// CBR kordered (state based) test
-		output_filename = "BaselineResults/CBR,weightedKnn,standardize,none,kordered,none,.csv";
-		pt.PerformanceEvaluatorMethod(filenames, standardize, output_filename,"weightedKNN","kordered", null);
+//		output_filename = "BaselineResults/CBR,weightedKnn,standardize,none,kordered,none,.csv";
+//		pt.PerformanceEvaluatorMethod(filenames, standardize, output_filename,"weightedKNN","kordered", null);
 		
 		// CBR kunordered (state based) test
-//		output_filename = "BaselineResults/CBR,weightedKnn,standardize,none,kunordered,none,.csv";
-//		pt.PerformanceEvaluatorMethod(filenames, standardize, output_filename,"weightedKNN","kunordered", null);
+		output_filename = "BaselineResults/CBR,weightedKnn,standardize,none,kunordered,none,.csv";
+		pt.PerformanceEvaluatorMethod(filenames, standardize, output_filename,"weightedKNN","kunordered", null);
 		
 		// CBR kordered_r (reactive) test
 //		output_filename = "BaselineResults/CBR,weightedKnn,standardize,none,kordered_r,none,.csv";
