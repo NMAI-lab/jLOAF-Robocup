@@ -1,4 +1,4 @@
-/*
+
 package CasebaseCreation;
 
 import java.util.ArrayList;
@@ -26,4 +26,3 @@ public class caseBaseMergeTool {
 		CaseBase.save(fullCB, "fullCB.cb");
 	}
 }
-*/
